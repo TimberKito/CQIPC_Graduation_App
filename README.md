@@ -8,5 +8,4 @@
 >
 > 操作系统：Windows 10
 >
-> 开发工具：Visual Studio Code
-
+> 开发工具：IntelliJ IDEA 2021.1.3
