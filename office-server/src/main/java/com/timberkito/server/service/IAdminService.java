@@ -27,4 +27,14 @@ public interface IAdminService extends IService<Admin> {
      * @date 2021/12/11 2:09
      */
     RespBean login (String username, String password, HttpServletRequest request);
+    
+    /**
+     * 
+     * @param username 
+     * @return com.timberkito.server.pojo.Admin
+     * @author Timber.Wang
+     * @describe: 根据用户名获取用户
+     * @date 2021/12/11 12:34
+     */
+    Admin getAdminByUserName (String username);
 }

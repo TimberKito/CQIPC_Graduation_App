@@ -1,5 +1,6 @@
 package com.timberkito.server.controller;
 
+import com.timberkito.server.pojo.Admin;
 import com.timberkito.server.pojo.AdminLoginParam;
 import com.timberkito.server.pojo.RespBean;
 import com.timberkito.server.service.IAdminService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 /**
  * @author Timber.Wang
@@ -27,4 +29,23 @@ public class LoginController{
     public RespBean login(AdminLoginParam adminLoginParam, HttpServletRequest request){
         return adminService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword(),request);
     }
+
+    @ApiOperation(value = "获取当前登陆用户信息")
+    @PostMapping("/admin/info")
+    public Admin getAdminInfo(Principal principal){
+        if (null == principal){
+            return null;
+        }
+        String username = principal.getName();
+        Admin admin = adminService.getAdminByUserName(username);
+        admin.setPassword(null);
+        return admin;
+    }
+
+    @ApiOperation(value = "退出登陆")
+    @PostMapping("/logout")
+    public RespBean logout(){
+        return RespBean.success("注销成功！");
+    }
+
 }

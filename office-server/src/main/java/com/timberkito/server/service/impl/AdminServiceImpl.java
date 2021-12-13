@@ -1,5 +1,6 @@
 package com.timberkito.server.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.timberkito.server.config.security.JwtTokenUtil;
 import com.timberkito.server.mapper.AdminMapper;
@@ -30,6 +31,8 @@ import java.util.Map;
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService{
 
+    @Autowired
+    private AdminMapper adminMapper;
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
@@ -70,5 +73,20 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         tokenMap.put("token",token);
         tokenMap.put("tokenHead",tokenHead);
         return RespBean.success("登陆成功",tokenMap);
+    }
+
+    /**
+     *
+     * @param username
+     * @return com.timberkito.server.pojo.Admin
+     * @author Timber.Wang
+     * @describe: 根据用户名获取用户
+     * @date 2021/12/11 12:35
+     */
+    @Override
+    public Admin getAdminByUserName (String username){
+        return adminMapper.selectOne(new QueryWrapper<Admin>()
+                .eq("username",username)
+                .eq("enabled",true));
     }
 }
