@@ -23,12 +23,13 @@ public class JwtTokenUtil{
     @Value("${jwt.expiration}")
     private Long expiration;
 
-    /*
+    /**
+     *
      * @param userDetails
-     * @return
+     * @return java.lang.String
      * @author Timber.Wang
-     * @describe:根据用户信息生成 token
-     * @date 2021/12/11 0:18
+     * @describe: 根据用户信息生成 token
+     * @date 2021/12/15 21:19
      */
     public String generateToken(UserDetails userDetails){
         Map<String,Object> claims = new HashMap<>();
@@ -36,13 +37,14 @@ public class JwtTokenUtil{
         claims.put(CLAIM_KEY_CREATED,new Date());
         return generateToken(claims);
     }
-    
-    /*
-     * @param: token
-     * @return: username
-     * @author: Timber.Wang
+
+    /**
+     *
+     * @param token
+     * @return java.lang.String
+     * @author Timber.Wang
      * @describe: 从 token 中获取登陆用户名
-     * @date 2021/12/11 0:35
+     * @date 2021/12/15 21:19
      */
     public String getUsernameFromToken(String token){
         String username;
@@ -55,36 +57,39 @@ public class JwtTokenUtil{
         return username;
     }
 
-    /*
-     * @Param: token
-     * @Param: userDetails
-     * @return: 
-     * @author: Timber.Wang
+    /**
+     *
+     * @param token
+	 * @param userDetails
+     * @return boolean
+     * @author Timber.Wang
      * @describe: 验证 token 是否有效
-     * @date 2021/12/11 0:59
+     * @date 2021/12/15 21:19
      */
     public boolean validateToken(String token,UserDetails userDetails){
         String username = getUsernameFromToken(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
-    /*
-     * @Param: token
-     * @return:
-     * @author: Timber.Wang
+    /**
+     *
+     * @param token
+     * @return boolean
+     * @author Timber.Wang
      * @describe: 判断 token 是否可以被刷新
-     * @date 2021/12/11 1:11
+     * @date 2021/12/15 21:20
      */
     public boolean canRefresh(String token){
         return isTokenExpired(token);
     }
 
-    /*
-     * @Param: token
-     * @return:
-     * @author: Timber.Wang
+    /**
+     *
+     * @param token
+     * @return java.lang.String
+     * @author Timber.Wang
      * @describe: 刷新 token
-     * @date 2021/12/11 1:23
+     * @date 2021/12/15 21:20
      */
     public String refreshToken(String token){
         Claims claims = getClaimsFormToken(token);
@@ -92,37 +97,39 @@ public class JwtTokenUtil{
         return generateToken(claims);
     }
 
-    /*
-     * @Param: token
-     * @return: 
-     * @author: Timber.Wang
+    /**
+     *
+     * @param token
+     * @return boolean
+     * @author Timber.Wang
      * @describe: 判断 token 是否失效
-     * @date 2021/12/11 0:59
+     * @date 2021/12/15 21:21
      */
     private boolean isTokenExpired (String token){
         Date expireDate = getExpiredDateFromToken(token);
         return expireDate.before(new Date());
     }
 
-    /*
-     * @Param: token
-     * @return: 从 token 中获取过期时间
-     * @author: Timber.Wang
-     * @describe:
-     * @date 2021/12/11 1:06
+    /**
+     *
+     * @param token
+     * @return java.util.Date
+     * @author Timber.Wang
+     * @describe: 从 token 中获取过期时间
+     * @date 2021/12/15 21:21
      */
     private Date getExpiredDateFromToken (String token){
         Claims claims = getClaimsFormToken(token);
         return claims.getExpiration();
     }
 
-
-    /*
-     * @param: token
-     * @return: claims
-     * @author: Timber.Wang
+    /**
+     *
+     * @param token
+     * @return io.jsonwebtoken.Claims
+     * @author Timber.Wang
      * @describe: 从 token 中获取载荷
-     * @date 2021/12/11 0:44
+     * @date 2021/12/15 21:21
      */
     private Claims getClaimsFormToken (String token){
         Claims claims = null;
@@ -136,13 +143,13 @@ public class JwtTokenUtil{
         }
         return claims;
     }
-
-    /*
+    /**
+     *
      * @param claims
-     * @return
+     * @return java.lang.String
      * @author Timber.Wang
      * @describe: 根据载荷生成 jwt token
-     * @date 2021/12/11 0:16
+     * @date 2021/12/15 21:22
      */
     private String generateToken(Map<String,Object> claims){
         return Jwts.builder()
@@ -152,12 +159,13 @@ public class JwtTokenUtil{
                 .compact();
     }
 
-    /*
-     * @param null
-     * @return Date
+    /**
+     *
+     * @param
+     * @return java.util.Date
      * @author Timber.Wang
      * @describe: 生成 token 失效时间
-     * @date 2021/12/11 0:16
+     * @date 2021/12/15 21:22
      */
     private Date generateExpirationDate (){
         return new Date(System.currentTimeMillis() + expiration * 1000);

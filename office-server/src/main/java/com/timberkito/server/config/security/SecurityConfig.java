@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author Timber.Wang
@@ -25,12 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure (AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure (HttpSecurity http) throws Exception{
         //使用JWT，不需要csrf
         http.csrf()
                 .disable()
@@ -40,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .authorizeRequests()
                 //允许登陆访问
-                .antMatchers("/login","/logout")
+                .antMatchers("/login", "/logout")
                 .permitAll()
                 //所有请求都要求认证
                 .anyRequest()
@@ -49,19 +50,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .headers()
                 .cacheControl();
         //添加jwt，登陆授权拦截器
-        http.addFilterBefore();
+        http.addFilterBefore(jwtAuthencationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         //添加自定义未授权和未登录结果返回
         http.exceptionHandling()
                 .accessDeniedHandler()
                 .authenticationEntryPoint();
     }
 
+    @SuppressWarnings("RedundantIfStatement")
     @Bean
     @Override
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService (){
         return username -> {
             Admin admin = adminService.getAdminByUserName(username);
-            if (null != admin){
+            if (null != admin) {
                 return admin;
             }
             return null;
@@ -69,7 +71,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder (){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JwtAuthencationTokenFilter jwtAuthencationTokenFilter(){
+        return new JwtAuthencationTokenFilter();
     }
 }
