@@ -16,37 +16,35 @@ import java.util.Map;
 @Component
 public class JwtTokenUtil{
 
-    private static final String CLAIM_KEY_USERNAME="sub";
-    private static final String CLAIM_KEY_CREATED="created";
+    private static final String CLAIM_KEY_USERNAME = "sub";
+    private static final String CLAIM_KEY_CREATED = "created";
     @Value("${jwt.secret}")
     private String secret;
     @Value("${jwt.expiration}")
     private Long expiration;
 
     /**
-     *
      * @param userDetails
      * @return java.lang.String
      * @author Timber.Wang
      * @describe: 根据用户信息生成 token
      * @date 2021/12/15 21:19
      */
-    public String generateToken(UserDetails userDetails){
-        Map<String,Object> claims = new HashMap<>();
-        claims.put(CLAIM_KEY_USERNAME,userDetails.getUsername());
-        claims.put(CLAIM_KEY_CREATED,new Date());
+    public String generateToken (UserDetails userDetails){
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
+        claims.put(CLAIM_KEY_CREATED, new Date());
         return generateToken(claims);
     }
 
     /**
-     *
      * @param token
      * @return java.lang.String
      * @author Timber.Wang
      * @describe: 从 token 中获取登陆用户名
      * @date 2021/12/15 21:19
      */
-    public String getUsernameFromToken(String token){
+    public String getUsernameFromToken (String token){
         String username;
         try {
             Claims claims = getClaimsFormToken(token);
@@ -58,47 +56,43 @@ public class JwtTokenUtil{
     }
 
     /**
-     *
      * @param token
-	 * @param userDetails
+     * @param userDetails
      * @return boolean
      * @author Timber.Wang
      * @describe: 验证 token 是否有效
      * @date 2021/12/15 21:19
      */
-    public boolean validateToken(String token,UserDetails userDetails){
+    public boolean validateToken (String token, UserDetails userDetails){
         String username = getUsernameFromToken(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
     /**
-     *
      * @param token
      * @return boolean
      * @author Timber.Wang
      * @describe: 判断 token 是否可以被刷新
      * @date 2021/12/15 21:20
      */
-    public boolean canRefresh(String token){
+    public boolean canRefresh (String token){
         return isTokenExpired(token);
     }
 
     /**
-     *
      * @param token
      * @return java.lang.String
      * @author Timber.Wang
      * @describe: 刷新 token
      * @date 2021/12/15 21:20
      */
-    public String refreshToken(String token){
+    public String refreshToken (String token){
         Claims claims = getClaimsFormToken(token);
-        claims.put(CLAIM_KEY_CREATED,new Date());
+        claims.put(CLAIM_KEY_CREATED, new Date());
         return generateToken(claims);
     }
 
     /**
-     *
      * @param token
      * @return boolean
      * @author Timber.Wang
@@ -111,7 +105,6 @@ public class JwtTokenUtil{
     }
 
     /**
-     *
      * @param token
      * @return java.util.Date
      * @author Timber.Wang
@@ -124,7 +117,6 @@ public class JwtTokenUtil{
     }
 
     /**
-     *
      * @param token
      * @return io.jsonwebtoken.Claims
      * @author Timber.Wang
@@ -143,24 +135,23 @@ public class JwtTokenUtil{
         }
         return claims;
     }
+
     /**
-     *
      * @param claims
      * @return java.lang.String
      * @author Timber.Wang
      * @describe: 根据载荷生成 jwt token
      * @date 2021/12/15 21:22
      */
-    private String generateToken(Map<String,Object> claims){
+    private String generateToken (Map<String, Object> claims){
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())
-                .signWith(SignatureAlgorithm.ES512,secret)
+                .signWith(SignatureAlgorithm.ES512, secret)
                 .compact();
     }
 
     /**
-     *
      * @param
      * @return java.util.Date
      * @author Timber.Wang
