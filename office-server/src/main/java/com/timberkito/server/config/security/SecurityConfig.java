@@ -72,9 +72,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                //允许登陆访问
-                .antMatchers("/login", "/logout")
-                .permitAll()
                 //所有请求都要求认证
                 .anyRequest()
                 .authenticated()

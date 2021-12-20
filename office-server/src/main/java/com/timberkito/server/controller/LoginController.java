@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,7 @@ public class LoginController{
 
     @ApiOperation(value = "登陆之后返回token")
     @PostMapping("/login")
-    public RespBean login(AdminLoginParam adminLoginParam, HttpServletRequest request){
+    public RespBean login(@RequestBody AdminLoginParam adminLoginParam,HttpServletRequest request){
         return adminService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword(),request);
     }
 
@@ -37,7 +38,9 @@ public class LoginController{
             return null;
         }
         String username = principal.getName();
+        // 通过 username 获取用户实体
         Admin admin = adminService.getAdminByUserName(username);
+        // 设置返回密码为空
         admin.setPassword(null);
         return admin;
     }
