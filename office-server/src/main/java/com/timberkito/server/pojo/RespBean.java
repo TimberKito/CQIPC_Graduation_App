@@ -19,47 +19,51 @@ public class RespBean{
     private String message;
     private Object obj;
 
-    /*
-     * @Param: message
-     * @return:
-     * @author: Timber.Wang
+    /**
+     *
+     * @param message
+     * @return com.timberkito.server.pojo.RespBean
+     * @author Timber.Wang
      * @describe: 成功返回结果
-     * @date 2021/12/11 1:33
+     * @date 2021-12-11 7:06 PM
      */
     public static RespBean success(String message){
         return new RespBean(200,message,null);
     }
 
-    /*
-     * @Param: message
-     * @Param: obj
-     * @return:
-     * @author: Timber.Wang
-     * @describe: 成功返回结果
-     * @date 2021/12/11 1:35
+    /**
+     *
+     * @param message
+	 * @param obj
+     * @return com.timberkito.server.pojo.RespBean
+     * @author Timber.Wang
+     * @describe: 成功返回结果带消息
+     * @date 2021-12-11 1:07 AM
      */
     public static RespBean success(String message,Object obj){
         return new RespBean(200,message,obj);
     }
 
-    /*
-     * @Param: message
-     * @return:
-     * @author: Timber.Wang
+    /**
+     *
+     * @param message
+     * @return com.timberkito.server.pojo.RespBean
+     * @author Timber.Wang
      * @describe: 失败返回结果
-     * @date 2021/12/11 1:39
+     * @date 2021-12-11 7:08 PM
      */
     public static RespBean error(String message){
         return new RespBean(500,message,null);
     }
 
-    /*
-     * @Param: message
-     * @Param: obj
-     * @return:
-     * @author: Timber.Wang
-     * @describe: 失败返回结果
-     * @date 2021/12/11 1:40
+    /**
+     *
+     * @param message
+	 * @param obj
+     * @return com.timberkito.server.pojo.RespBean
+     * @author Timber.Wang
+     * @describe: 失败返回结果带消息
+     * @date 2021-12-11 7:09 PM
      */
     public static RespBean error(String message,Object obj){
         return new RespBean(500,message,obj);

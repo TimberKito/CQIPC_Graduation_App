@@ -3,6 +3,8 @@ package com.timberkito.server.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.timberkito.server.pojo.Menu;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,13 @@ import com.timberkito.server.pojo.Menu;
  */
 public interface IMenuService extends IService<Menu> {
 
+    /**
+     *
+     * @param
+     * @return java.util.List<com.timberkito.server.pojo.Menu>
+     * @author Timber.Wang
+     * @describe: 根据用户id查询菜单列表
+     * @date 2021-12-22 8:19 PM
+     */
+    List<Menu> getMenusByAdminId();
 }

@@ -48,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     public void configure (WebSecurity web) throws Exception{
         web.ignoring().antMatchers(
+                //绕过安全认证的路径
                 "/login",
                 "logout",
                 "/css/**",
