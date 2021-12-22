@@ -4,5 +4,10 @@
       "name": "jwt.secret",
       "type": "java.lang.String",
       "description": "Description for jwt.secret."
-  }
-] }
+    },
+    {
+      "name": "spring.main.allow-circular-references",
+      "type": "java.lang.String",
+      "description": "Description for spring.main.allow-circular-references."
+    }
+  ] }

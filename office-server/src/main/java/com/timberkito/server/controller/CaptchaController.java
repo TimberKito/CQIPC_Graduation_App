@@ -31,7 +31,7 @@ public class CaptchaController{
         // 定义response输出类型为image/jpeg类型
         response.setDateHeader("Expires",0);
         // Set standard HTTP/1.1 no-cache headers.
-        response.setHeader("Cache-Control","no-store, no-cache, mustrevalidate");
+        response.setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         // Set IE extended HTTP/1.1 no-cache headers (use addHeader).
         response.addHeader("Cache-Control","post-check=0, pre-check=0");
         // Set standard HTTP/1.0 no-cache header.
@@ -48,6 +48,7 @@ public class CaptchaController{
         // 根据文本验证码创建图形验证码
         BufferedImage image = defaultKaptcha.createImage(text);
 
+        // 打开输出流
         ServletOutputStream outputStream = null;
         try {
             outputStream = response.getOutputStream();
