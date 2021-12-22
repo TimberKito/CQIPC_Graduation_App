@@ -6,8 +6,11 @@ import com.timberkito.server.pojo.Admin;
 import com.timberkito.server.pojo.Menu;
 import com.timberkito.server.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -25,6 +28,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 
     @Autowired
     private MenuMapper menuMapper;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     /**
      * @param
@@ -35,12 +40,22 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
      */
     @Override
     public List<Menu> getMenusByAdminId(){
-        return menuMapper.getMenusByAdminId(
-                ((Admin) SecurityContextHolder
-                        .getContext()
-                        .getAuthentication()
-                        .getPrincipal())
-                        .getId()
-        );
+        //从SpringSecurity中获取登陆用户id
+        Integer adminId = ((Admin) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal())
+                .getId();
+        ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
+        // 从redis获取菜单数据
+        List<Menu> menus = (List<Menu>) valueOperations.get("menu_" + adminId);
+        // 如果redis返回为空
+        if (CollectionUtils.isEmpty(menus)){
+            // 从数据库中获取数据
+            menus = menuMapper.getMenusByAdminId(adminId);
+            // 将数据设置到redis中
+            valueOperations.set("menu_" + adminId,menus);
+        }
+        return menus;
     }
 }
