@@ -46,16 +46,26 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
                 .getAuthentication()
                 .getPrincipal())
                 .getId();
-        ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
-        // 从redis获取菜单数据
-        List<Menu> menus = (List<Menu>) valueOperations.get("menu_" + adminId);
-        // 如果redis返回为空
-        if (CollectionUtils.isEmpty(menus)){
-            // 从数据库中获取数据
-            menus = menuMapper.getMenusByAdminId(adminId);
-            // 将数据设置到redis中
-            valueOperations.set("menu_" + adminId,menus);
+
+        try {
+            // 实例化redis对象
+            ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
+            // 从redis获取菜单数据
+            List<Menu> menus = (List<Menu>) valueOperations.get("menu_" + adminId);
+            // 如果redis返回为空
+            if (CollectionUtils.isEmpty(menus)){
+                // 从数据库中获取数据
+                menus = menuMapper.getMenusByAdminId(adminId);
+                // 将数据设置到redis中
+                valueOperations.set("menu_" + adminId,menus);
+            }
+            return menus;
+        } catch (Exception e) {
+            // 如果redis出现异常
+            log.error("Redis server exception [Redis服务异常]",e);
+            // 直接从数据库中获取数据
+            return menuMapper.getMenusByAdminId(adminId);
         }
-        return menus;
+
     }
 }

@@ -57,7 +57,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public RespBean login(String username,String password,String code,HttpServletRequest request){
         // 从Session中获取验证码code
         String captcha = (String) request.getSession().getAttribute("captcha");
-        if (captcha == null){
+        if (StringUtils.isEmpty(captcha)){
             return RespBean.error("验证码失效，请获取验证码!");
         }
         if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)){
