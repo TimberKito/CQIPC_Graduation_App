@@ -3,8 +3,10 @@ package com.timberkito.server.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.timberkito.server.pojo.Admin;
 import com.timberkito.server.pojo.RespBean;
+import com.timberkito.server.pojo.Role;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -36,4 +38,13 @@ public interface IAdminService extends IService<Admin>{
      * @date 2021/12/11 12:34
      */
     Admin getAdminByUserName(String username);
+
+    /**
+     * @param adminId
+     * @return java.util.List<com.timberkito.server.pojo.Role>
+     * @author Timber.Wang
+     * @describe: 根据用户ID查询角色权限
+     * @date 2022-01-03 12:33 AM
+     */
+    List<Role> getRoles(Integer adminId);
 }

@@ -25,7 +25,7 @@ public class LoginController{
     @Autowired
     private IAdminService adminService;
 
-    @ApiOperation(value = "登陆之后返回token")
+    @ApiOperation(value = "登陆并返回token")
     @PostMapping("/login")
     public RespBean login(@RequestBody AdminLoginParam adminLoginParam,HttpServletRequest request){
         return adminService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword(),adminLoginParam.getCode(),request);
@@ -42,6 +42,8 @@ public class LoginController{
         Admin admin = adminService.getAdminByUserName(username);
         // 设置返回密码为空
         admin.setPassword(null);
+        // 返回用户权限
+        admin.setRoles(adminService.getRoles(admin.getId()));
         return admin;
     }
 

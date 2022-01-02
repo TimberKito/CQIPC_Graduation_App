@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.timberkito.server.config.security.component.JwtTokenUtil;
 import com.timberkito.server.mapper.AdminMapper;
+import com.timberkito.server.mapper.RoleMapper;
 import com.timberkito.server.pojo.Admin;
 import com.timberkito.server.pojo.RespBean;
+import com.timberkito.server.pojo.Role;
 import com.timberkito.server.service.IAdminService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,6 +45,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     private JwtTokenUtil jwtTokenUtil;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+    @Autowired
+    private RoleMapper roleMapper;
 
     /**
      * @param username
@@ -58,6 +63,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         // 从Session中获取验证码code
         String captcha = (String) request.getSession().getAttribute("captcha");
         if (StringUtils.isEmpty(captcha)){
+            log.error("No captcha in the Session [服务器Session中无验证码，请先获取验证码]");
             return RespBean.error("验证码失效，请获取验证码!");
         }
         if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)){
@@ -98,5 +104,18 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         return adminMapper.selectOne(new QueryWrapper<Admin>()
                 .eq("username",username)
                 .eq("enabled",true));
+    }
+
+    /**
+     *
+     * @param adminId
+     * @return java.util.List<com.timberkito.server.pojo.Role>
+     * @author Timber.Wang
+     * @describe: 根据用户ID查询角色权限
+     * @date 2022-01-03 12:34 AM
+     */
+    @Override
+    public List<Role> getRoles(Integer adminId){
+        return roleMapper.getRoles(adminId);
     }
 }
