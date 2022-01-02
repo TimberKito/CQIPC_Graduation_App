@@ -7,16 +7,15 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author Timber.Wang
  * @since 2021-12-10
  */
-public interface IMenuService extends IService<Menu> {
+public interface IMenuService extends IService<Menu>{
 
     /**
-     *
      * @param
      * @return java.util.List<com.timberkito.server.pojo.Menu>
      * @author Timber.Wang
@@ -24,4 +23,14 @@ public interface IMenuService extends IService<Menu> {
      * @date 2021-12-22 8:19 PM
      */
     List<Menu> getMenusByAdminId();
+
+    /**
+     * @param
+     * @return java.util.List<com.timberkito.server.pojo.Menu>
+     * @author Timber.Wang
+     * @describe: 根据角色获取菜单列表
+     * @date 2022-01-02 7:33 PM
+     */
+    List<Menu> getMenusWithRole();
+
 }

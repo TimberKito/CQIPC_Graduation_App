@@ -31,6 +31,14 @@
         </collection>
     </resultMap>
 
+    <resultMap id="MenusWithRole" type="com.timberkito.server.pojo.Menu" extends="BaseResultMap">
+        <collection property="roles" ofType="com.timberkito.server.pojo.Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled
@@ -58,6 +66,20 @@
           and mr.rid = ar.rid
           and ar.adminId = #{id}
           and m2.enabled = true
+        order by m2.id
+    </select>
+    <!--根据角色获取菜单列表-->
+    <select id="getMenusWithRole" resultMap="MenusWithRole">
+        select m.*,
+               r.id       as rid,
+               r.`name`   as rname,
+               r.`nameZh` as rnameZh
+        from t_menu m,
+             t_menu_role mr,
+             t_role r
+        where m.id = mr.mid
+          and r.id = mr.rid
+        order by m.id
     </select>
 
 </mapper>

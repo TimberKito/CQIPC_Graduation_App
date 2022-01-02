@@ -1,4 +1,4 @@
-package com.timberkito.server.config.security;
+package com.timberkito.server.config.security.component;
 
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;

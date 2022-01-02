@@ -7,16 +7,15 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Timber.Wang
  * @since 2021-12-10
  */
-public interface MenuMapper extends BaseMapper<Menu> {
+public interface MenuMapper extends BaseMapper<Menu>{
 
     /**
-     *
      * @param id
      * @return java.util.List<com.timberkito.server.pojo.Menu>
      * @author Timber.Wang
@@ -24,4 +23,13 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @date 2021-12-22 8:30 PM
      */
     List<Menu> getMenusByAdminId(Integer id);
+
+    /**
+     * @param
+     * @return java.util.List<com.timberkito.server.pojo.Menu>
+     * @author Timber.Wang
+     * @describe: 根据角色获取菜单列表
+     * @date 2022-01-02 7:37 PM
+     */
+    List<Menu> getMenusWithRole();
 }

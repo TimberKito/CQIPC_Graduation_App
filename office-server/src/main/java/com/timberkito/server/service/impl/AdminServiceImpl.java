@@ -2,7 +2,7 @@ package com.timberkito.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.timberkito.server.config.security.JwtTokenUtil;
+import com.timberkito.server.config.security.component.JwtTokenUtil;
 import com.timberkito.server.mapper.AdminMapper;
 import com.timberkito.server.pojo.Admin;
 import com.timberkito.server.pojo.RespBean;

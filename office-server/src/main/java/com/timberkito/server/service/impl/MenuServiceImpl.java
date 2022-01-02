@@ -68,4 +68,16 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         }
 
     }
+
+    /**
+     * @param
+     * @return java.util.List<com.timberkito.server.pojo.Menu>
+     * @author Timber.Wang
+     * @describe: 根据角色获取菜单列表
+     * @date 2022-01-02 7:34 PM
+     */
+    @Override
+    public List<Menu> getMenusWithRole(){
+        return menuMapper.getMenusWithRole();
+    }
 }
