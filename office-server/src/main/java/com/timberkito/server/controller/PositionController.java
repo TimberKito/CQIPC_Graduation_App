@@ -18,10 +18,10 @@ import java.util.List;
  * </p>
  *
  * @author Timber.Wang
- * @since 2021-12-10
+ * @since 2022-01-02
  */
 @RestController
-@RequestMapping("/system/config/pos")
+@RequestMapping("/system/basic/pos")
 public class PositionController{
 
     @Autowired
