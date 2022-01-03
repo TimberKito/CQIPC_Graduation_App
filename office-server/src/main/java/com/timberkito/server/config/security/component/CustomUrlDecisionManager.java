@@ -41,6 +41,7 @@ public class CustomUrlDecisionManager implements AccessDecisionManager{
             // 判断用户是否为url所需角色
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             for (GrantedAuthority authority : authorities) {
+                // 打印登陆用户权限
                 System.out.println(authority.getAuthority());
                 if (authority.getAuthority().equals(needRole)){
                     return;
