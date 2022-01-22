@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         web.ignoring().antMatchers(
                 // 绕过安全认证的路径
                 "/login",
-                "logout",
+                "/logout",
                 "/css/**",
                 "/js/**",
                 "/index.html",
@@ -115,7 +115,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 admin.setRoles(adminService.getRoles(admin.getId()));
                 return admin;
             }
-            throw new UsernameNotFoundException("登陆失败！用户名或密码不正确");
+            throw new UsernameNotFoundException("登陆失败！为获取到用户！");
         };
     }
 

@@ -62,19 +62,23 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public RespBean login(String username,String password,String code,HttpServletRequest request){
         // 从Session中获取验证码code
         String captcha = (String) request.getSession().getAttribute("captcha");
+        // 如果Session中没有验证码
         if (StringUtils.isEmpty(captcha)){
-            log.error("No captcha in the Session [服务器Session中无验证码，请先获取验证码]");
+            log.error("No captcha in the Session [服务器Session中无验证码，可能前端未获取！]");
             return RespBean.error("验证码失效，请获取验证码!");
         }
+        // 判断验证码
         if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)){
             return RespBean.error("验证码输入错误，请重新输入！");
         }
 
         // 登陆
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        // 判断密码
         if (null == userDetails || !passwordEncoder.matches(password,userDetails.getPassword())){
             return RespBean.error("用户名或密码不正确");
         }
+        // 是否启用
         if (!userDetails.isEnabled()){
             return RespBean.error("账号已被禁用，请联系管理员");
         }
@@ -103,7 +107,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public Admin getAdminByUserName(String username){
         return adminMapper.selectOne(new QueryWrapper<Admin>()
                 .eq("username",username)
-                .eq("enabled",true));
+//                .eq("enabled",true)
+        );
     }
 
     /**

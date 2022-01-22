@@ -38,8 +38,8 @@ public class Swagger2Config{
 
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("CQIPC_Timber后端系统接口文档")
-                .description("网上云办公系统后端接口文档")
+                .title("毕业设计后端系统接口文档")
+                .description("企业办公信息化管理系统接口文档")
                 .contact(new Contact("Timber.Wang","http:localhost:8081/doc.html","timberkitowang@gmail.com"))
                 .version("1.0")
                 .build();
