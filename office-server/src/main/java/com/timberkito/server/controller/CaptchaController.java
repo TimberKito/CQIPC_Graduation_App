@@ -2,6 +2,7 @@ package com.timberkito.server.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +20,11 @@ import java.io.IOException;
  * @author Timber.Wang
  * @date 2021-12-21 3:52 PM
  */
+@Slf4j
 @RestController
 public class CaptchaController{
+
+//    private final Logger logger = LoggerFactory.getLogger(CaptchaController.class);
 
     @Autowired
     private DefaultKaptcha defaultKaptcha;
@@ -39,10 +43,11 @@ public class CaptchaController{
         // return a jpeg
         response.setContentType("image/jpeg");
 
+
         // 生成验证码
         // 获取验证码文本内容
         String text = defaultKaptcha.createText();
-        System.out.println("验证码内容：" + text);
+        log.info("Captcha Code  : " + text);
         // 将验证码文本内容放入session
         request.getSession().setAttribute("captcha",text);
         // 根据文本验证码创建图形验证码

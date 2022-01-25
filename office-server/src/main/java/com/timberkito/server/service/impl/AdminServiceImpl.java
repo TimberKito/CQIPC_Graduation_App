@@ -9,6 +9,7 @@ import com.timberkito.server.pojo.Admin;
 import com.timberkito.server.pojo.RespBean;
 import com.timberkito.server.pojo.Role;
 import com.timberkito.server.service.IAdminService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +33,7 @@ import java.util.Map;
  * @author Timber.Wang
  * @since 2021-12-10
  */
+@Slf4j
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService{
 
@@ -65,7 +67,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         // 如果Session中没有验证码
         if (StringUtils.isEmpty(captcha)){
             log.error("No captcha in the Session [服务器Session中无验证码，可能前端未获取！]");
-            return RespBean.error("验证码失效，请获取验证码!");
+            captcha = "";
         }
         // 判断验证码
         if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)){
@@ -106,13 +108,11 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public Admin getAdminByUserName(String username){
         return adminMapper.selectOne(new QueryWrapper<Admin>()
-                .eq("username",username)
-//                .eq("enabled",true)
+                        .eq("username",username)
         );
     }
 
     /**
-     *
      * @param adminId
      * @return java.util.List<com.timberkito.server.pojo.Role>
      * @author Timber.Wang

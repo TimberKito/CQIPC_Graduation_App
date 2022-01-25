@@ -5,6 +5,7 @@ import com.timberkito.server.mapper.MenuMapper;
 import com.timberkito.server.pojo.Admin;
 import com.timberkito.server.pojo.Menu;
 import com.timberkito.server.service.IMenuService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -22,6 +23,7 @@ import java.util.List;
  * @author Timber.Wang
  * @since 2021-12-10
  */
+@Slf4j
 @Service
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService{
 
