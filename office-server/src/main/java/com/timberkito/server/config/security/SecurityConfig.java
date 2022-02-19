@@ -61,11 +61,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 "favicon.ico",
                 "/captcha",
                 // 开发环境下放行路径
-                "/doc.html",
-                "/webjars/**",
+                "/docx.html",
+                "/v2/api-docs",
+                "/configuration/ui",
                 "/swagger-resources/**",
-                "/v2/api-docs/**"
-        );
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**");
     }
 
     @Override
@@ -81,7 +83,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 //所有请求都要求认证
                 .anyRequest()
                 .authenticated()
-
                 //动态权限配置
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>(){
                     @Override

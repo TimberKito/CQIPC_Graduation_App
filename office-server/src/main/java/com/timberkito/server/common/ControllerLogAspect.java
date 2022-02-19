@@ -1,6 +1,7 @@
 package com.timberkito.server.common;
 
-import com.google.gson.Gson;
+//import com.google.gson.Gson;
+import org.json.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -15,7 +16,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 优雅的请求日志输出
+ * 废弃的请求日志输出
  *
  * @author Timber.Wang
  * @date 2022-01-25 2:32 PM
@@ -57,16 +58,6 @@ public class ControllerLogAspect{
         log.info("HTTP Method   : {}", request.getMethod());
         // 打印调用 controller 的全路径以及执行方法
         log.info("Class Method  : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
-//        Enumeration<String> headerNames = request.getHeaderNames();
-//        while (headerNames.hasMoreElements()) {
-//            String headerName = headerNames.nextElement();
-//            log.info("Header Name - " + headerName + ", Value - " + request.getHeader(headerName));
-//        }
-//        Enumeration<String> params = request.getParameterNames();
-//        while (params.hasMoreElements()) {
-//            String paramName = params.nextElement();
-//            log.info("Parameter Name - " + paramName + ", Value - " + request.getParameter(paramName));
-//        }
     }
 
     /**
@@ -81,7 +72,7 @@ public class ControllerLogAspect{
         long startTime = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
         // 打印出参
-        log.info("Response Args : {}", new Gson().toJson(result));
+        log.info("Response Args : {}", new JSONObject(result).toString());
         // 执行耗时
         log.info("Time-Consuming: {} ms", System.currentTimeMillis() - startTime);
         log.info("=========================================== End ===========================================");
