@@ -1,7 +1,5 @@
 package com.timberkito.server.common;
 
-//import com.google.gson.Gson;
-import org.json.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -71,8 +69,6 @@ public class ControllerLogAspect{
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
         long startTime = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
-        // 打印出参
-        log.info("Response Args : {}", new JSONObject(result).toString());
         // 执行耗时
         log.info("Time-Consuming: {} ms", System.currentTimeMillis() - startTime);
         log.info("=========================================== End ===========================================");
