@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.3.1.tmp</version>
+            <version>3.5.1</version>
         </dependency>
 
         <!--mybatis-plus 代码生成器依赖-->
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.9.0</version>
+            <version>0.9.1</version>
         </dependency>
 
         <!-- google kaptcha 验证码 -->
@@ -96,7 +96,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.11</version>
         </dependency>
 
         <!-- redis -->
@@ -115,7 +114,7 @@
         <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-spring-boot-starter</artifactId>
-            <version>4.2.0</version>
+            <version>4.4.0</version>
         </dependency>
 
         <!-- rabbitmq 消息队列 -->
@@ -134,18 +133,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
-        <!--gson-->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20211205</version>
         </dependency>
 
         <!--解决没有xml包的问题-->

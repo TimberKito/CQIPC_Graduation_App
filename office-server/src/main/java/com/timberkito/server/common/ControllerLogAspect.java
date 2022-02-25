@@ -1,7 +1,6 @@
 package com.timberkito.server.common;
 
-//import com.google.gson.Gson;
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -9,6 +8,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -25,7 +25,15 @@ import javax.servlet.http.HttpServletRequest;
 @Aspect
 @Component
 @Slf4j
-public class ControllerLogAspect{
+public class ControllerLogAspect {
+
+    private final ObjectMapper mapper;
+
+    @Autowired
+    public ControllerLogAspect(ObjectMapper mapper) {
+        this.mapper = mapper;
+    }
+
     /**
      * @param
      * @return void
@@ -34,7 +42,7 @@ public class ControllerLogAspect{
      * @date 2022-01-25 2:48 PM
      */
     @Pointcut("execution(public * com.timberkito.server.controller.*.*(..))")
-    public void webLog(){
+    public void webLog() {
     }
 
     /**
@@ -68,11 +76,13 @@ public class ControllerLogAspect{
      * @date 2022-01-25 2:57 PM
      */
     @Around("webLog()")
-    public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
+    public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
-        // 打印出参
-        log.info("Response Args : {}", new JSONObject(result).toString());
+        if (result != null) {
+            // 打印出参
+            log.info("Response Args : {}", mapper.writeValueAsString(result));
+        }
         // 执行耗时
         log.info("Time-Consuming: {} ms", System.currentTimeMillis() - startTime);
         log.info("=========================================== End ===========================================");
