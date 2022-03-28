@@ -4,14 +4,22 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.MenuRole">
-        <id column="id" property="id" />
-        <result column="mid" property="mid" />
-        <result column="rid" property="rid" />
+        <id column="id" property="id"/>
+        <result column="mid" property="mid"/>
+        <result column="rid" property="rid"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, mid, rid
     </sql>
+
+    <!--更新角色菜单列表-->
+    <insert id="insertRecord">
+        insert into t_menu_role(mid,rid) values
+        <foreach collection="mids" item="mid" separator=",">
+            (#{mid},#{rid})
+        </foreach>
+    </insert>
 
 </mapper>

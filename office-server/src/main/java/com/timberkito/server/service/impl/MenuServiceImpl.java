@@ -79,7 +79,19 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
      * @date 2022-01-02 7:34 PM
      */
     @Override
-    public List<Menu> getMenusWithRole(){
+    public List<Menu> getMenusWithRole() {
         return menuMapper.getMenusWithRole();
+    }
+
+    /**
+     * @param
+     * @return java.util.List<com.timberkito.server.pojo.Menu>
+     * @author Timber.Wang
+     * @describe: 查询所有菜单
+     * @date 2022/3/28 10:43
+     */
+    @Override
+    public List<Menu> getAllMenus() {
+        return menuMapper.getAllMenus();
     }
 }
