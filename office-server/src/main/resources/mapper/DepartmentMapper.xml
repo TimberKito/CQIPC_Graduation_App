@@ -4,17 +4,48 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.Department">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="parentId" property="parentId" />
-        <result column="depPath" property="depPath" />
-        <result column="enabled" property="enabled" />
-        <result column="isParent" property="isParent" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="parentId" property="parentId"/>
+        <result column="depPath" property="depPath"/>
+        <result column="enabled" property="enabled"/>
+        <result column="isParent" property="isParent"/>
+    </resultMap>
+
+    <resultMap id="DepartmentWithChildren" type="com.timberkito.server.pojo.Department" extends="BaseResultMap">
+        <collection property="children" ofType="com.timberkito.server.pojo.Department"
+                    select="com.timberkito.server.mapper.DepartmentMapper.getAllDepartments" column="id">
+        </collection>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, parentId, depPath, enabled, isParent
     </sql>
+
+    <!--删除部门-->
+    <select id="deleteDep" statementType="CALLABLE">
+        call deleteDep(#{id,mode=IN,jdbcType=INTEGER},
+                       #{result,mode=OUT,jdbcType=INTEGER})
+    </select>
+
+    <!--添加部门-->
+    <select id="addDep" statementType="CALLABLE">
+        call addDep(#{name,mode=IN,jdbcType=VARCHAR},
+                    #{parentId,mode=IN,jdbcType=INTEGER},
+                    #{enabled,mode=IN,jdbcType=BOOLEAN},
+                    #{result,mode=OUT,jdbcType=INTEGER},
+                    #{id,mode=OUT,jdbcType=INTEGER})
+    </select>
+
+    <!--获取所有部门-->
+    <select id="getAllDepartments" resultMap="DepartmentWithChildren">
+        select
+        <include refid="Base_Column_List"/>
+        from office_db.t_department
+        where parentId = #{parentId}
+
+    </select>
+
 
 </mapper>
