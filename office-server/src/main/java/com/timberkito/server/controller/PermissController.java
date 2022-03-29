@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * @author Timber
  */
 @RestController
-@RequestMapping("/system/basic/permiss")
+@RequestMapping("/system/basic/permission")
 public class PermissController {
 
     @Autowired

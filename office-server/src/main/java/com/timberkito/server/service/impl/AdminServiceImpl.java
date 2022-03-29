@@ -9,6 +9,7 @@ import com.timberkito.server.pojo.Admin;
 import com.timberkito.server.pojo.RespBean;
 import com.timberkito.server.pojo.Role;
 import com.timberkito.server.service.IAdminService;
+import com.timberkito.server.utils.AdminUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ import java.util.Map;
  */
 @Slf4j
 @Service
-public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService{
+public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
 
     @Autowired
     private AdminMapper adminMapper;
@@ -61,41 +62,41 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      * @date 2021/12/11 2:10
      */
     @Override
-    public RespBean login(String username,String password,String code,HttpServletRequest request){
+    public RespBean login(String username, String password, String code, HttpServletRequest request) {
         // 从Session中获取验证码code
         String captcha = (String) request.getSession().getAttribute("captcha");
         // 如果Session中没有验证码
-        if (StringUtils.isEmpty(captcha)){
+        if (StringUtils.isEmpty(captcha)) {
             log.error("No captcha in the Session [服务器Session中无验证码，可能前端未获取！]");
             captcha = "";
         }
         // 判断验证码
-        if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)){
+        if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)) {
             return RespBean.error("验证码输入错误，请重新输入！");
         }
 
         // 登陆
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         // 判断密码
-        if (null == userDetails || !passwordEncoder.matches(password,userDetails.getPassword())){
+        if (null == userDetails || !passwordEncoder.matches(password, userDetails.getPassword())) {
             return RespBean.error("用户名或密码不正确");
         }
         // 是否启用
-        if (!userDetails.isEnabled()){
+        if (!userDetails.isEnabled()) {
             return RespBean.error("账号已被禁用，请联系管理员");
         }
 
         // 更新 security 登陆用户对象
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
         // 生成token
         String token = jwtTokenUtil.generateToken(userDetails);
         Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("token",token);
-        tokenMap.put("tokenHead",tokenHead);
-        return RespBean.success("登陆成功",tokenMap);
+        tokenMap.put("token", token);
+        tokenMap.put("tokenHead", tokenHead);
+        return RespBean.success("登陆成功", tokenMap);
     }
 
     /**
@@ -106,9 +107,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      * @date 2021/12/11 12:35
      */
     @Override
-    public Admin getAdminByUserName(String username){
+    public Admin getAdminByUserName(String username) {
         return adminMapper.selectOne(new QueryWrapper<Admin>()
-                        .eq("username",username)
+                .eq("username", username)
         );
     }
 
@@ -120,7 +121,20 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      * @date 2022-01-03 12:34 AM
      */
     @Override
-    public List<Role> getRoles(Integer adminId){
+    public List<Role> getRoles(Integer adminId) {
         return roleMapper.getRoles(adminId);
+    }
+
+    /**
+     * @param keywords
+     * @return java.util.List<com.timberkito.server.pojo.Admin>
+     * @author Timber.Wang
+     * @describe: 获取所有操作员
+     * @date 2022/3/29 16:52
+     */
+    @Override
+    public List<Admin> getAllAdmins(String keywords) {
+        Integer adminId = AdminUtils.getCurrentAdmin().getId();
+        return adminMapper.getAllAdmins(adminId, keywords);
     }
 }

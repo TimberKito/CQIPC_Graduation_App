@@ -4,21 +4,48 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.Admin">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="phone" property="phone" />
-        <result column="telephone" property="telephone" />
-        <result column="address" property="address" />
-        <result column="enabled" property="enabled" />
-        <result column="username" property="username" />
-        <result column="password" property="password" />
-        <result column="userFace" property="userFace" />
-        <result column="remark" property="remark" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+        <result column="telephone" property="telephone"/>
+        <result column="address" property="address"/>
+        <result column="enabled" property="enabled"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="userFace" property="userFace"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <resultMap id="AdminWithRole" type="com.timberkito.server.pojo.Admin" extends="BaseResultMap">
+        <collection property="roles" ofType="com.timberkito.server.pojo.Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, phone, telephone, address, enabled, username, password, userFace, remark
     </sql>
+    <!--获取所有操作员-->
+    <select id="getAllAdmins" resultMap="AdminWithRole">
+        SELECT
+        a.*,
+        r.id AS rid,
+        r.`name` AS rname,
+        r.nameZh AS rnameZh
+        FROM
+        t_admin a
+        LEFT JOIN t_admin_role ar ON a.id = ar.adminId
+        LEFT JOIN t_role r ON r.id = ar.rid
+        WHERE
+        a.id != #{id}
+        <if test="null!=keywords and ''!=keywords">
+            AND a.`name` LIKE CONCAT( '%', #{keywords}, '%' )
+        </if>
+        ORDER BY
+        a.id
+    </select>
 
 </mapper>

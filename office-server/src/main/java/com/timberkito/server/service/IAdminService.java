@@ -47,4 +47,13 @@ public interface IAdminService extends IService<Admin>{
      * @date 2022-01-03 12:33 AM
      */
     List<Role> getRoles(Integer adminId);
+
+    /**
+     * @param [keywords]
+     * @return java.util.List<com.timberkito.server.pojo.Admin>
+     * @author Timber.Wang
+     * @describe: 获取所有操作员
+     * @date 2022/3/29 16:52
+     */
+    List<Admin> getAllAdmins(String keywords);
 }

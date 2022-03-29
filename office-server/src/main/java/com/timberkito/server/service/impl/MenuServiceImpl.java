@@ -2,14 +2,13 @@ package com.timberkito.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.timberkito.server.mapper.MenuMapper;
-import com.timberkito.server.pojo.Admin;
 import com.timberkito.server.pojo.Menu;
 import com.timberkito.server.service.IMenuService;
+import com.timberkito.server.utils.AdminUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -25,7 +24,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService{
+public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
 
 
     @Autowired
@@ -41,13 +40,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
      * @date 2021-12-22 8:20 PM
      */
     @Override
-    public List<Menu> getMenusByAdminId(){
+    public List<Menu> getMenusByAdminId() {
         //从SpringSecurity中获取登陆用户id
-        Integer adminId = ((Admin) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal())
-                .getId();
+        Integer adminId = AdminUtils.getCurrentAdmin().getId();
 
         try {
             // 实例化redis对象
@@ -55,16 +50,16 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
             // 从redis获取菜单数据
             List<Menu> menus = (List<Menu>) valueOperations.get("menu_" + adminId);
             // 如果redis返回为空
-            if (CollectionUtils.isEmpty(menus)){
+            if (CollectionUtils.isEmpty(menus)) {
                 // 从数据库中获取数据
                 menus = menuMapper.getMenusByAdminId(adminId);
                 // 将数据设置到redis中
-                valueOperations.set("menu_" + adminId,menus);
+                valueOperations.set("menu_" + adminId, menus);
             }
             return menus;
         } catch (Exception e) {
             // 如果redis出现异常
-            log.error("Redis server exception [Redis服务异常]",e);
+            log.error("Redis server exception [Redis服务异常]", e);
             // 直接从数据库中获取数据
             return menuMapper.getMenusByAdminId(adminId);
         }
