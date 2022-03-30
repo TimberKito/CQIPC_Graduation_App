@@ -25,7 +25,7 @@ public interface IAdminService extends IService<Admin> {
      * @param request
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe:
+     * @describe: 登录
      * @date 2022/3/30 11:32
      */
     RespBean login(String username, String password, String code, HttpServletRequest request);
@@ -53,8 +53,18 @@ public interface IAdminService extends IService<Admin> {
      * @param keywords
      * @return java.util.List<com.timberkito.server.pojo.Admin>
      * @author Timber.Wang
-     * @describe:
+     * @describe: 获取所有操作员
      * @date 2022/3/30 11:32
      */
     List<Admin> getAllAdmins(String keywords);
+
+    /**
+     * @param adminId
+     * @param rids
+     * @return com.timberkito.server.pojo.RespBean
+     * @author Timber.Wang
+     * @describe: 更新操作员角色
+     * @date 2022/3/30 15:21
+     */
+    RespBean updateAdminRole(Integer adminId, Integer[] rids);
 }

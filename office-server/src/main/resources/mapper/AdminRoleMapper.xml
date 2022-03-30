@@ -13,5 +13,11 @@
     <sql id="Base_Column_List">
         id, adminId, rid
     </sql>
-
+    <!--更新操作员角色-->
+    <update id="addAdminRole">
+        insert into office_db.t_admin_role(adminId, rid) values
+        <foreach collection="rids" item="rid" separator=",">
+            (#{adminId},#{rid})
+        </foreach>
+    </update>
 </mapper>
