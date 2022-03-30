@@ -25,8 +25,8 @@ public interface IAdminService extends IService<Admin> {
      * @param request
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 登陆后返回 token
-     * @date 2021/12/11 2:09
+     * @describe:
+     * @date 2022/3/30 11:32
      */
     RespBean login(String username, String password, String code, HttpServletRequest request);
 
@@ -48,12 +48,13 @@ public interface IAdminService extends IService<Admin> {
      */
     List<Role> getRoles(Integer adminId);
 
+
     /**
-     * @param [keywords]
+     * @param keywords
      * @return java.util.List<com.timberkito.server.pojo.Admin>
      * @author Timber.Wang
-     * @describe: 获取所有操作员
-     * @date 2022/3/29 16:52
+     * @describe:
+     * @date 2022/3/30 11:32
      */
     List<Admin> getAllAdmins(String keywords);
 }

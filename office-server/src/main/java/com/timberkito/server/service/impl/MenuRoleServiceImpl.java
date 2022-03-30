@@ -24,12 +24,14 @@ public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole> i
     @Autowired
     private MenuRoleMapper menuRoleMapper;
 
+
     /**
-     * @param rid, mids
+     * @param rid
+     * @param mids
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 更新角色菜单
-     * @date 2022/3/28 11:14
+     * @describe:
+     * @date 2022/3/30 11:34
      */
     @Override
     @Transactional

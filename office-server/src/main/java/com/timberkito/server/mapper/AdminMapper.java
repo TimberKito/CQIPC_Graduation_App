@@ -16,12 +16,14 @@ import java.util.List;
  */
 public interface AdminMapper extends BaseMapper<Admin> {
 
+
     /**
-     * @param [id, keywords]
+     * @param id
+     * @param keywords
      * @return java.util.List<com.timberkito.server.pojo.Admin>
      * @author Timber.Wang
-     * @describe: 获取所有操作员
-     * @date 2022/3/29 17:03
+     * @describe:
+     * @date 2022/3/30 11:35
      */
     List<Admin> getAllAdmins(@Param("id") Integer id, @Param("keywords") String keywords);
 }

@@ -14,12 +14,14 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface MenuRoleMapper extends BaseMapper<MenuRole> {
 
+
     /**
-     * @param [rid, mids]
-     * @return void
+     * @param rid
+     * @param mids
+     * @return java.lang.Integer
      * @author Timber.Wang
-     * @describe: 批量更新角色菜单
-     * @date 2022/3/28 11:20
+     * @describe:
+     * @date 2022/3/30 11:36
      */
     Integer insertRecord(@Param("rid") Integer rid, @Param("mids") Integer[] mids);
 }

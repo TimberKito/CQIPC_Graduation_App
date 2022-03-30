@@ -17,29 +17,30 @@ import java.util.List;
 public interface IDepartmentService extends IService<Department> {
 
     /**
-     * @param []
+     * @param
      * @return java.util.List<com.timberkito.server.pojo.Department>
      * @author Timber.Wang
-     * @describe: 获取所有部门
-     * @date 2022/3/28 13:27
+     * @describe:
+     * @date 2022/3/30 11:33
      */
     List<Department> getAllDepartments();
 
     /**
-     * @param [dep]
+     * @param dep
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 添加部门
-     * @date 2022/3/28 13:49
+     * @describe:
+     * @date 2022/3/30 11:33
      */
     RespBean addDep(Department dep);
 
+
     /**
-     * @param [id]
+     * @param id
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 删除部门
-     * @date 2022/3/28 14:14
+     * @describe:
+     * @date 2022/3/30 11:33
      */
     RespBean deleteDep(Integer id);
 }

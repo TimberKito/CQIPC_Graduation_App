@@ -15,30 +15,33 @@ import java.util.List;
  */
 public interface DepartmentMapper extends BaseMapper<Department> {
 
+
     /**
-     * @param []
+     * @param parentId
      * @return java.util.List<com.timberkito.server.pojo.Department>
      * @author Timber.Wang
-     * @describe: 获取所有部门
-     * @date 2022/3/28 13:30
+     * @describe:
+     * @date 2022/3/30 11:35
      */
     List<Department> getAllDepartments(Integer parentId);
 
+
     /**
-     * @param [dep]
+     * @param dep
      * @return void
      * @author Timber.Wang
-     * @describe: 添加部门
-     * @date 2022/3/28 13:50
+     * @describe:
+     * @date 2022/3/30 11:35
      */
     void addDep(Department dep);
 
+
     /**
-     * @param [department]
+     * @param department
      * @return void
      * @author Timber.Wang
-     * @describe: 删除部门
-     * @date 2022/3/28 14:17
+     * @describe:
+     * @date 2022/3/30 11:35
      */
     void deleteDep(Department department);
 }

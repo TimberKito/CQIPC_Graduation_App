@@ -25,23 +25,24 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
     private DepartmentMapper departmentMapper;
 
     /**
-     * @param []
+     * @param
      * @return java.util.List<com.timberkito.server.pojo.Department>
      * @author Timber.Wang
-     * @describe: 获取所有部门
-     * @date 2022/3/28 13:29
+     * @describe:
+     * @date 2022/3/30 11:34
      */
     @Override
     public List<Department> getAllDepartments() {
         return departmentMapper.getAllDepartments(-1);
     }
 
+
     /**
-     * @param [dep]
+     * @param dep
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 添加部门
-     * @date 2022/3/28 13:49
+     * @describe:
+     * @date 2022/3/30 11:34
      */
     @Override
     public RespBean addDep(Department dep) {
@@ -53,12 +54,13 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         return RespBean.error("添加失败！");
     }
 
+
     /**
-     * @param [id]
+     * @param id
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 删除部门
-     * @date 2022/3/28 14:14
+     * @describe:
+     * @date 2022/3/30 11:34
      */
     @Override
     public RespBean deleteDep(Integer id) {

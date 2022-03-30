@@ -14,12 +14,14 @@ import com.timberkito.server.pojo.RespBean;
  */
 public interface IMenuRoleService extends IService<MenuRole> {
 
+
     /**
-     * @param [rid, mids]
+     * @param rid
+     * @param mids
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 更新角色菜单
-     * @date 2022/3/28 11:13
+     * @describe:
+     * @date 2022/3/30 11:33
      */
     RespBean updateMenuRole(Integer rid, Integer[] mids);
 }
