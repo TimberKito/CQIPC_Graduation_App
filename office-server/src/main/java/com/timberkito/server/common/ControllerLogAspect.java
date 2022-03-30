@@ -53,7 +53,7 @@ public class ControllerLogAspect {
      * @date 2022-01-25 2:49 PM
      */
     @Before("webLog()")
-    public void doBefore(JoinPoint joinPoint){
+    public void doBefore(JoinPoint joinPoint) {
         // 开始打印请求日志
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert attributes != null;

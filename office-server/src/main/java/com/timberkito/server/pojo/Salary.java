@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Timber.Wang
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_salary")
-@ApiModel(value="Salary对象", description="")
+@ApiModel(value = "Salary对象", description = "")
 public class Salary implements Serializable {
 
     private static final long serialVersionUID = 1L;

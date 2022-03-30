@@ -14,10 +14,10 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @date 2021-12-22 9:18 PM
  */
 @Configuration
-public class RedisConfig{
+public class RedisConfig {
     @Bean
-    public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory connectionFactory){
-        RedisTemplate<String,Object> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         // String 类型 Key 序列器
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         // String 类型 Value 序列器

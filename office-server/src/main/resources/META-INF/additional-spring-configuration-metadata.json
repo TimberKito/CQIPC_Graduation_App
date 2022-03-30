@@ -10,4 +10,5 @@
       "type": "java.lang.String",
       "description": "Description for spring.main.allow-circular-references."
     }
-  ] }
+  ]
+}

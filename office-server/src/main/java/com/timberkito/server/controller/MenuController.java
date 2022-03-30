@@ -21,14 +21,14 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/system/cfg")
-public class MenuController{
+public class MenuController {
 
     @Autowired
     private IMenuService menuService;
 
     @ApiOperation(value = "通过用户id查询菜单列表")
     @GetMapping("/menu")
-    public List<Menu> getMenusByAdminId(){
+    public List<Menu> getMenusByAdminId() {
         return menuService.getMenusByAdminId();
     }
 

@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @date 2021/12/11 12:47
  */
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private IAdminService adminService;
@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     private CustomUrlDecisionManager customUrlDecisionManager;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
 
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
      * @date 2021-12-18 8:57 PM
      */
     @Override
-    public void configure(WebSecurity web) throws Exception{
+    public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(
                 // 绕过安全认证的路径
                 "/login",
@@ -71,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         //使用JWT，不需要csrf
         http.csrf()
                 .disable()
@@ -84,9 +84,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .anyRequest()
                 .authenticated()
                 //动态权限配置
-                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>(){
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
-                    public <O extends FilterSecurityInterceptor> O postProcess(O o){
+                    public <O extends FilterSecurityInterceptor> O postProcess(O o) {
                         o.setAccessDecisionManager(customUrlDecisionManager);
                         o.setSecurityMetadataSource(customFilter);
                         return o;
@@ -98,7 +98,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .headers()
                 .cacheControl();
         //添加jwt，登陆授权拦截器
-        http.addFilterBefore(jwtAuthencationTokenFilter(),UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthencationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         //添加自定义未授权和未登录结果返回
         http.exceptionHandling()
                 .accessDeniedHandler(restfulAccessDeniedHandler)
@@ -108,10 +108,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @SuppressWarnings("RedundantIfStatement")
     @Bean
     @Override
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         return username -> {
             Admin admin = adminService.getAdminByUserName(username);
-            if (null != admin){
+            if (null != admin) {
                 // 根据用户Id设置相应权限
                 admin.setRoles(adminService.getRoles(admin.getId()));
                 return admin;
@@ -121,12 +121,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public JwtAuthencationTokenFilter jwtAuthencationTokenFilter(){
+    public JwtAuthencationTokenFilter jwtAuthencationTokenFilter() {
         return new JwtAuthencationTokenFilter();
     }
 }

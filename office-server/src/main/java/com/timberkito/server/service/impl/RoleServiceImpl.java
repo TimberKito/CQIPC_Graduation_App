@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author Timber.Wang
  * @since 2021-12-10
  */
 @Service
-public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService{
+public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 
 }

@@ -5,7 +5,7 @@ import com.timberkito.server.pojo.Salary;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author Timber.Wang

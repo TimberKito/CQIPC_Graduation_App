@@ -4,13 +4,13 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.EmployeeRemove">
-        <id column="id" property="id" />
-        <result column="eid" property="eid" />
-        <result column="afterDepId" property="afterDepId" />
-        <result column="afterJobId" property="afterJobId" />
-        <result column="removeDate" property="removeDate" />
-        <result column="reason" property="reason" />
-        <result column="remark" property="remark" />
+        <id column="id" property="id"/>
+        <result column="eid" property="eid"/>
+        <result column="afterDepId" property="afterDepId"/>
+        <result column="afterJobId" property="afterJobId"/>
+        <result column="removeDate" property="removeDate"/>
+        <result column="reason" property="reason"/>
+        <result column="remark" property="remark"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

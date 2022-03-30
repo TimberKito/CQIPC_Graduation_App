@@ -4,8 +4,8 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.PoliticsStatus">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

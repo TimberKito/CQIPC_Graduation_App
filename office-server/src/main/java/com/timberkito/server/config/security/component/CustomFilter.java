@@ -22,7 +22,7 @@ import java.util.List;
  * @date 2022-01-03 12:09 AM
  */
 @Component
-public class CustomFilter implements FilterInvocationSecurityMetadataSource{
+public class CustomFilter implements FilterInvocationSecurityMetadataSource {
 
     @Autowired
     private IMenuService menuService;
@@ -30,13 +30,13 @@ public class CustomFilter implements FilterInvocationSecurityMetadataSource{
     AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     @Override
-    public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException{
+    public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
         // 获取客户端请求的url
         String requestUrl = ((FilterInvocation) o).getRequestUrl();
         List<Menu> menus = menuService.getMenusWithRole();
         for (Menu menu : menus) {
             // 根据请求url与菜单所需角色是否匹配
-            if (antPathMatcher.match(menu.getUrl(),requestUrl)){
+            if (antPathMatcher.match(menu.getUrl(), requestUrl)) {
                 String[] str = menu.getRoles().stream().map(Role::getName).toArray(String[]::new);
                 return SecurityConfig.createList(str);
             }
@@ -46,12 +46,12 @@ public class CustomFilter implements FilterInvocationSecurityMetadataSource{
     }
 
     @Override
-    public Collection<ConfigAttribute> getAllConfigAttributes(){
+    public Collection<ConfigAttribute> getAllConfigAttributes() {
         return null;
     }
 
     @Override
-    public boolean supports(Class<?> aClass){
+    public boolean supports(Class<?> aClass) {
         return false;
     }
 }

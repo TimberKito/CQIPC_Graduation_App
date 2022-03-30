@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021-12-18 7:46 PM
  */
 @RestController
-public class HelloController{
+public class HelloController {
     @GetMapping("hello")
-    public String hello(){
+    public String hello() {
         return "hello";
     }
 
     @GetMapping("/employee/basic/hello")
-    public String hello2(){
+    public String hello2() {
         return "/employee/basic/hello";
     }
 
     @GetMapping("/employee/advanced/hello")
-    public String hello3(){
+    public String hello3() {
         return "/employee/advanced/hello";
     }
 }

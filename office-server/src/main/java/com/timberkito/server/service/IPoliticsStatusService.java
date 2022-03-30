@@ -5,7 +5,7 @@ import com.timberkito.server.pojo.PoliticsStatus;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author Timber.Wang

@@ -13,7 +13,7 @@ import java.util.List;
  * @author Timber.Wang
  * @since 2021-12-10
  */
-public interface MenuMapper extends BaseMapper<Menu>{
+public interface MenuMapper extends BaseMapper<Menu> {
 
     /**
      * @param id

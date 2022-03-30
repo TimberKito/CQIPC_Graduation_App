@@ -5,7 +5,7 @@ import com.timberkito.server.pojo.EmployeeEc;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Timber.Wang

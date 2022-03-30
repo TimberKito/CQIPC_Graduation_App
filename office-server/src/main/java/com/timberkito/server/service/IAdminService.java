@@ -16,7 +16,7 @@ import java.util.List;
  * @author Timber.Wang
  * @since 2021-12-10
  */
-public interface IAdminService extends IService<Admin>{
+public interface IAdminService extends IService<Admin> {
 
     /**
      * @param username
@@ -28,7 +28,7 @@ public interface IAdminService extends IService<Admin>{
      * @describe: 登陆后返回 token
      * @date 2021/12/11 2:09
      */
-    RespBean login(String username,String password,String code,HttpServletRequest request);
+    RespBean login(String username, String password, String code, HttpServletRequest request);
 
     /**
      * @param username

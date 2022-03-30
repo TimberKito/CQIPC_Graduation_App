@@ -4,15 +4,15 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.MailLog">
-        <id column="msgId" property="msgId" />
-        <result column="eid" property="eid" />
-        <result column="status" property="status" />
-        <result column="routeKey" property="routeKey" />
-        <result column="exchange" property="exchange" />
-        <result column="count" property="count" />
-        <result column="tryTime" property="tryTime" />
-        <result column="createTime" property="createTime" />
-        <result column="updateTime" property="updateTime" />
+        <id column="msgId" property="msgId"/>
+        <result column="eid" property="eid"/>
+        <result column="status" property="status"/>
+        <result column="routeKey" property="routeKey"/>
+        <result column="exchange" property="exchange"/>
+        <result column="count" property="count"/>
+        <result column="tryTime" property="tryTime"/>
+        <result column="createTime" property="createTime"/>
+        <result column="updateTime" property="updateTime"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

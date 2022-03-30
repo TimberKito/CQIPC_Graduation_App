@@ -4,10 +4,10 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.SysMsgContent">
-        <id column="id" property="id" />
-        <result column="title" property="title" />
-        <result column="message" property="message" />
-        <result column="createDate" property="createDate" />
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="message" property="message"/>
+        <result column="createDate" property="createDate"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

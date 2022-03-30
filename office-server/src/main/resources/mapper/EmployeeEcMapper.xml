@@ -4,13 +4,13 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.EmployeeEc">
-        <id column="id" property="id" />
-        <result column="eid" property="eid" />
-        <result column="ecDate" property="ecDate" />
-        <result column="ecReason" property="ecReason" />
-        <result column="ecPoint" property="ecPoint" />
-        <result column="ecType" property="ecType" />
-        <result column="remark" property="remark" />
+        <id column="id" property="id"/>
+        <result column="eid" property="eid"/>
+        <result column="ecDate" property="ecDate"/>
+        <result column="ecReason" property="ecReason"/>
+        <result column="ecPoint" property="ecPoint"/>
+        <result column="ecType" property="ecType"/>
+        <result column="remark" property="remark"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

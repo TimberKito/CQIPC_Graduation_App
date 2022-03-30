@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Timber.Wang
@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_mail_log")
-@ApiModel(value="MailLog对象", description="")
+@ApiModel(value = "MailLog对象", description = "")
 public class MailLog implements Serializable {
 
     private static final long serialVersionUID = 1L;

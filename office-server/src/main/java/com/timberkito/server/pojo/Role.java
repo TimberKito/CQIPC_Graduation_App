@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Timber.Wang
@@ -23,7 +23,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_role")
-@ApiModel(value="Role对象", description="")
+@ApiModel(value = "Role对象", description = "")
 public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;

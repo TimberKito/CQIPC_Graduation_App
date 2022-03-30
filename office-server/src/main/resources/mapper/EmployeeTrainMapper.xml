@@ -4,11 +4,11 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.EmployeeTrain">
-        <id column="id" property="id" />
-        <result column="eid" property="eid" />
-        <result column="trainDate" property="trainDate" />
-        <result column="trainContent" property="trainContent" />
-        <result column="remark" property="remark" />
+        <id column="id" property="id"/>
+        <result column="eid" property="eid"/>
+        <result column="trainDate" property="trainDate"/>
+        <result column="trainContent" property="trainContent"/>
+        <result column="remark" property="remark"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

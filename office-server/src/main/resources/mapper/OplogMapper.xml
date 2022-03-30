@@ -4,10 +4,10 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.Oplog">
-        <id column="id" property="id" />
-        <result column="addDate" property="addDate" />
-        <result column="operate" property="operate" />
-        <result column="adminid" property="adminid" />
+        <id column="id" property="id"/>
+        <result column="addDate" property="addDate"/>
+        <result column="operate" property="operate"/>
+        <result column="adminid" property="adminid"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

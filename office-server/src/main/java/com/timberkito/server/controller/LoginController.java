@@ -21,21 +21,21 @@ import java.security.Principal;
  */
 @Api(tags = "LoginController")
 @RestController
-public class LoginController{
+public class LoginController {
 
     @Autowired
     private IAdminService adminService;
 
     @ApiOperation(value = "登陆并返回token")
     @PostMapping("/login")
-    public RespBean login(@RequestBody AdminLoginParam adminLoginParam,HttpServletRequest request){
-        return adminService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword(),adminLoginParam.getCode(),request);
+    public RespBean login(@RequestBody AdminLoginParam adminLoginParam, HttpServletRequest request) {
+        return adminService.login(adminLoginParam.getUsername(), adminLoginParam.getPassword(), adminLoginParam.getCode(), request);
     }
 
     @ApiOperation(value = "获取当前登陆用户信息")
     @GetMapping("/admin/info")
-    public Admin getAdminInfo(Principal principal){
-        if (null == principal){
+    public Admin getAdminInfo(Principal principal) {
+        if (null == principal) {
             return null;
         }
         String username = principal.getName();
@@ -50,7 +50,7 @@ public class LoginController{
 
     @ApiOperation(value = "退出登陆")
     @PostMapping("/logout")
-    public RespBean logout(){
+    public RespBean logout() {
         return RespBean.success("注销成功！");
     }
 

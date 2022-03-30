@@ -4,11 +4,11 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.Joblevel">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="titleLevel" property="titleLevel" />
-        <result column="createDate" property="createDate" />
-        <result column="enabled" property="enabled" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="titleLevel" property="titleLevel"/>
+        <result column="createDate" property="createDate"/>
+        <result column="enabled" property="enabled"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

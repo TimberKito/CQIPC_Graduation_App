@@ -4,12 +4,12 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.Appraise">
-        <id column="id" property="id" />
-        <result column="eid" property="eid" />
-        <result column="appDate" property="appDate" />
-        <result column="appResult" property="appResult" />
-        <result column="appContent" property="appContent" />
-        <result column="remark" property="remark" />
+        <id column="id" property="id"/>
+        <result column="eid" property="eid"/>
+        <result column="appDate" property="appDate"/>
+        <result column="appResult" property="appResult"/>
+        <result column="appContent" property="appContent"/>
+        <result column="remark" property="remark"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

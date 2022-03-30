@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Timber.Wang
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_sys_msg_content")
-@ApiModel(value="SysMsgContent对象", description="")
+@ApiModel(value = "SysMsgContent对象", description = "")
 public class SysMsgContent implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Timber.Wang
@@ -24,7 +24,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_employee_ec")
-@ApiModel(value="EmployeeEc对象", description="")
+@ApiModel(value = "EmployeeEc对象", description = "")
 public class EmployeeEc implements Serializable {
 
     private static final long serialVersionUID = 1L;

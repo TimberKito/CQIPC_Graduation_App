@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Accessors(chain = true)
 @TableName("t_admin")
 @ApiModel(value = "Admin对象", description = "")
-public class Admin implements Serializable, UserDetails{
+public class Admin implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
 
@@ -71,7 +71,7 @@ public class Admin implements Serializable, UserDetails{
     private List<Role> roles;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities(){
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles
                 .stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
@@ -79,22 +79,22 @@ public class Admin implements Serializable, UserDetails{
     }
 
     @Override
-    public boolean isAccountNonExpired(){
+    public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isAccountNonLocked(){
+    public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired(){
+    public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return enabled;
     }
 }

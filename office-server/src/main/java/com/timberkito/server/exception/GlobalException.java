@@ -18,7 +18,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
  * @date 2022-01-03 3:01 PM
  */
 @RestControllerAdvice
-public class GlobalException{
+public class GlobalException {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalException.class);
 
@@ -30,12 +30,12 @@ public class GlobalException{
      * @date 2022-01-25 1:22 PM
      */
     @ExceptionHandler(SQLException.class)
-    public RespBean mySqlException(SQLException e){
-        if (e instanceof SQLIntegrityConstraintViolationException){
-            logger.error("SQLIntegrityConstraintViolationException [数据库异常：此数据有关联数据！]",e);
+    public RespBean mySqlException(SQLException e) {
+        if (e instanceof SQLIntegrityConstraintViolationException) {
+            logger.error("SQLIntegrityConstraintViolationException [数据库异常：此数据有关联数据！]", e);
             return RespBean.error("此数据有关联数据，操作失败！");
         }
-        logger.error("数据库异常",e);
+        logger.error("数据库异常", e);
         return RespBean.error("数据库异常，操作失败！");
     }
 

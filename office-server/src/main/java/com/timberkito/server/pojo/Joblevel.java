@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 @TableName("t_joblevel")
 @ApiModel(value = "Joblevel对象", description = "")
-public class Joblevel implements Serializable{
+public class Joblevel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

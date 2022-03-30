@@ -4,13 +4,13 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.SalaryAdjust">
-        <id column="id" property="id" />
-        <result column="eid" property="eid" />
-        <result column="asDate" property="asDate" />
-        <result column="beforeSalary" property="beforeSalary" />
-        <result column="afterSalary" property="afterSalary" />
-        <result column="reason" property="reason" />
-        <result column="remark" property="remark" />
+        <id column="id" property="id"/>
+        <result column="eid" property="eid"/>
+        <result column="asDate" property="asDate"/>
+        <result column="beforeSalary" property="beforeSalary"/>
+        <result column="afterSalary" property="afterSalary"/>
+        <result column="reason" property="reason"/>
+        <result column="remark" property="remark"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

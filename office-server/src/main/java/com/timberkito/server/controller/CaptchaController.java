@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 @Slf4j
 @RestController
-public class CaptchaController{
+public class CaptchaController {
 
 //    private final Logger logger = LoggerFactory.getLogger(CaptchaController.class);
 
@@ -31,15 +31,15 @@ public class CaptchaController{
 
     @ApiOperation(value = "生成验证码")
     @GetMapping(value = "/captcha", produces = "image/jpeg")
-    public void captcha(HttpServletRequest request,HttpServletResponse response){
+    public void captcha(HttpServletRequest request, HttpServletResponse response) {
         // 定义response输出类型为image/jpeg类型
-        response.setDateHeader("Expires",0);
+        response.setDateHeader("Expires", 0);
         // Set standard HTTP/1.1 no-cache headers.
-        response.setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
         // Set IE extended HTTP/1.1 no-cache headers (use addHeader).
-        response.addHeader("Cache-Control","post-check=0, pre-check=0");
+        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
         // Set standard HTTP/1.0 no-cache header.
-        response.setHeader("Pragma","no-cache");
+        response.setHeader("Pragma", "no-cache");
         // return a jpeg
         response.setContentType("image/jpeg");
 
@@ -49,7 +49,7 @@ public class CaptchaController{
         String text = defaultKaptcha.createText();
         log.info("Captcha Code  : " + text);
         // 将验证码文本内容放入session
-        request.getSession().setAttribute("captcha",text);
+        request.getSession().setAttribute("captcha", text);
         // 根据文本验证码创建图形验证码
         BufferedImage image = defaultKaptcha.createImage(text);
 
@@ -58,12 +58,12 @@ public class CaptchaController{
         try {
             outputStream = response.getOutputStream();
             // 输出流 输出图片，格式为 jpg
-            ImageIO.write(image,"jpg",outputStream);
+            ImageIO.write(image, "jpg", outputStream);
             outputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (null != outputStream){
+            if (null != outputStream) {
                 try {
                     outputStream.close();
                 } catch (IOException e) {

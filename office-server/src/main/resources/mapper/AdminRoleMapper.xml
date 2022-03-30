@@ -4,9 +4,9 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.timberkito.server.pojo.AdminRole">
-        <id column="id" property="id" />
-        <result column="adminId" property="adminId" />
-        <result column="rid" property="rid" />
+        <id column="id" property="id"/>
+        <result column="adminId" property="adminId"/>
+        <result column="rid" property="rid"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

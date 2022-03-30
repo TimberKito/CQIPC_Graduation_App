@@ -19,19 +19,19 @@ import java.util.Collection;
  * @date 2022-01-03 12:54 AM
  */
 @Component
-public class CustomUrlDecisionManager implements AccessDecisionManager{
+public class CustomUrlDecisionManager implements AccessDecisionManager {
     @Override
-    public void decide(Authentication authentication,Object o,Collection<ConfigAttribute> collection)
-            throws AccessDeniedException, InsufficientAuthenticationException{
+    public void decide(Authentication authentication, Object o, Collection<ConfigAttribute> collection)
+            throws AccessDeniedException, InsufficientAuthenticationException {
 
         for (ConfigAttribute configAttribute : collection) {
             // 当前url所需角色
             String needRole = configAttribute.getAttribute();
 //            System.out.println("当前url所需权限" + configAttribute.getAttribute());
             // 判断角色是否登陆即可访问的角色，此角色在CustomFilter中设置
-            if ("ROLE_LOGIN".equals(needRole)){
+            if ("ROLE_LOGIN".equals(needRole)) {
                 // 判断是否登陆
-                if (authentication instanceof AnonymousAuthenticationToken){
+                if (authentication instanceof AnonymousAuthenticationToken) {
                     throw new AccessDeniedException("尚未登陆，请登陆！");
                 } else {
                     return;
@@ -43,7 +43,7 @@ public class CustomUrlDecisionManager implements AccessDecisionManager{
             for (GrantedAuthority authority : authorities) {
                 // 打印登陆用户权限
 //                System.out.println(authority.getAuthority());
-                if (authority.getAuthority().equals(needRole)){
+                if (authority.getAuthority().equals(needRole)) {
                     return;
                 }
             }
@@ -52,12 +52,12 @@ public class CustomUrlDecisionManager implements AccessDecisionManager{
     }
 
     @Override
-    public boolean supports(ConfigAttribute configAttribute){
+    public boolean supports(ConfigAttribute configAttribute) {
         return false;
     }
 
     @Override
-    public boolean supports(Class<?> aClass){
+    public boolean supports(Class<?> aClass) {
         return false;
     }
 }

@@ -26,7 +26,7 @@ import java.util.List;
 @Accessors(chain = true)
 @TableName("t_menu")
 @ApiModel(value = "Menu对象", description = "")
-public class Menu implements Serializable{
+public class Menu implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

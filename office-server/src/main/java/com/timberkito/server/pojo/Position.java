@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Timber.Wang
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_position")
-@ApiModel(value="Position对象", description="")
+@ApiModel(value = "Position对象", description = "")
 public class Position implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,7 +38,7 @@ public class Position implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "创建时间")
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
     private LocalDateTime createDate;
 
     @ApiModelProperty(value = "是否启用")

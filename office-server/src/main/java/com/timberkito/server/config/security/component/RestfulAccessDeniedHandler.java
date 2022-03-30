@@ -19,10 +19,10 @@ import java.io.PrintWriter;
  * @date 2021-12-18 7:17 PM
  */
 @Component
-public class RestfulAccessDeniedHandler implements AccessDeniedHandler{
+public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
     @Override
-    public void handle (HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException)
-            throws IOException, ServletException{
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException)
+            throws IOException, ServletException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
