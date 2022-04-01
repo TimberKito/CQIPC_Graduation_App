@@ -1,7 +1,12 @@
 package com.timberkito.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.timberkito.server.pojo.Employee;
+import org.apache.ibatis.annotations.Param;
+
+import java.time.LocalDate;
 
 /**
  * <p>
@@ -13,4 +18,16 @@ import com.timberkito.server.pojo.Employee;
  */
 public interface EmployeeMapper extends BaseMapper<Employee> {
 
+    /**
+     * @param page
+     * @param employee
+     * @param beginDateScope
+     * @return com.baomidou.mybatisplus.core.metadata.IPage<com.timberkito.server.pojo.Employee>
+     * @author Timber.Wang
+     * @describe: 获取所有员工（分页）
+     * @date 2022/4/1 19:13
+     */
+    IPage<Employee> getEmployeeByPage(Page<Employee> page,
+                                      @Param("employee") Employee employee,
+                                      @Param("beginDateScope") LocalDate[] beginDateScope);
 }
