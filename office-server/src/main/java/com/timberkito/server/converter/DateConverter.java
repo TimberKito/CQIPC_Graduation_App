@@ -17,10 +17,11 @@ import java.time.format.DateTimeFormatter;
 public class DateConverter implements Converter<String, LocalDate> {
 
     /**
+     * 日期格式转换
+     *
      * @param s
      * @return java.time.LocalDate
      * @author Timber.Wang
-     * @describe: 日期格式转换
      * @date 2022/4/1 18:47
      */
     @Override

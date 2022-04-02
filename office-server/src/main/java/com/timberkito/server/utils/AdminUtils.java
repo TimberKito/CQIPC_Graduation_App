@@ -9,10 +9,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class AdminUtils {
 
     /**
-     * @param []
+     * 获取当前所登录的用户
+     *
+     * @param
      * @return com.timberkito.server.pojo.Admin
      * @author Timber.Wang
-     * @describe: 获取当前所登录的用户
      * @date 2022/3/29 16:59
      */
     public static Admin getCurrentAdmin() {

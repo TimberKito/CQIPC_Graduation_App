@@ -40,7 +40,9 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
                 .title("毕业设计后端系统接口文档")
                 .description("企业办公信息化管理系统接口文档")
-                .contact(new Contact("Timber.Wang", "https://www.apifox.cn/apidoc/shared-e0226b57-c562-4e18-a108-f7c973b5167c", "timberkitowang@gmail.com"))
+                .contact(new Contact("Timber.Wang",
+                                     "https://www.apifox.cn/apidoc/shared-e0226b57-c562-4e18-a108-f7c973b5167c",
+                                     "timberkitowang@gmail.com"))
                 .version("1.0")
                 .build();
     }
@@ -54,12 +56,14 @@ public class Swagger2Config {
     }
 
     private List<springfox.documentation.spi.service.contexts.SecurityContext> securityContexts() {
-        List<springfox.documentation.spi.service.contexts.SecurityContext> result = new ArrayList<>();
+        List<springfox.documentation.spi.service.contexts.SecurityContext> result =
+                new ArrayList<>();
         result.add(getContextByPath("/hello/.*"));
         return result;
     }
 
-    private springfox.documentation.spi.service.contexts.SecurityContext getContextByPath(String pathRegex) {
+    private springfox.documentation.spi.service.contexts.SecurityContext getContextByPath(
+            String pathRegex) {
         return springfox.documentation.spi.service.contexts.SecurityContext.builder()
                 .securityReferences(defaultAuth())
                 .forPaths(PathSelectors.regex(pathRegex))
@@ -68,7 +72,8 @@ public class Swagger2Config {
 
     private List<SecurityReference> defaultAuth() {
         List<SecurityReference> result = new ArrayList<>();
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope authorizationScope =
+                new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
         result.add(new SecurityReference("Authorization", authorizationScopes));

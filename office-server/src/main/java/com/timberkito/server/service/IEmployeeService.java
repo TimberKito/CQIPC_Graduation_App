@@ -18,31 +18,35 @@ import java.time.LocalDate;
 public interface IEmployeeService extends IService<Employee> {
 
     /**
+     * 获取所有员工(分页)
+     *
      * @param currentPage
      * @param size
      * @param employee
      * @param beginDateScope
      * @return com.timberkito.server.pojo.RespPageBear
      * @author Timber.Wang
-     * @describe: 获取所有员工(分页)
      * @date 2022/4/1 19:06
      */
-    RespPageBean getEmployeeByPage(Integer currentPage, Integer size, Employee employee, LocalDate[] beginDateScope);
+    RespPageBean getEmployeeByPage(Integer currentPage, Integer size, Employee employee,
+                                   LocalDate[] beginDateScope);
 
     /**
+     * 获取工号
+     *
      * @param
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 获取工号
      * @date 2022/4/2 12:47
      */
     RespBean maxWorkId();
 
     /**
+     * 添加员工
+     *
      * @param employee
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 添加员工
      * @date 2022/4/2 13:08
      */
     RespBean addEmp(Employee employee);

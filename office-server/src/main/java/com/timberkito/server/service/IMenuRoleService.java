@@ -16,11 +16,12 @@ public interface IMenuRoleService extends IService<MenuRole> {
 
 
     /**
+     * 修改用户权限组
+     *
      * @param rid
      * @param mids
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe:
      * @date 2022/3/30 11:33
      */
     RespBean updateMenuRole(Integer rid, Integer[] mids);

@@ -35,45 +35,53 @@ public class ControllerLogAspect {
     }
 
     /**
+     * controller包下所有请求设为切入点
+     *
      * @param
      * @return void
      * @author Timber.Wang
-     * @describe: controller包下所有请求设为切入点
-     * @date 2022-01-25 2:48 PM
+     * @date 2022/4/2 15:32
      */
     @Pointcut("execution(public * com.timberkito.server.controller.*.*(..))")
     public void webLog() {
     }
 
+
     /**
+     * 切入点前织入
+     *
      * @param joinPoint
      * @return void
      * @author Timber.Wang
-     * @describe: 切入点前织入
-     * @date 2022-01-25 2:49 PM
+     * @date 2022/4/2 15:31
      */
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) {
         // 开始打印请求日志
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes attributes =
+                (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
         // 打印请求相关参数
-        log.info("========================================== Start ==========================================");
+        log.info(
+                "========================================== Start ==========================================");
         // 打印请求 url
         log.info("URL           : {}", request.getRequestURL().toString());
         // 打印 Http method
         log.info("HTTP Method   : {}", request.getMethod());
         // 打印调用 controller 的全路径以及执行方法
-        log.info("Class Method  : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+        log.info("Class Method  : {}.{}", joinPoint.getSignature().getDeclaringTypeName(),
+                 joinPoint.getSignature().getName());
     }
 
+
     /**
+     * 环绕切入点
+     *
      * @param proceedingJoinPoint
      * @return java.lang.Object
      * @author Timber.Wang
-     * @describe: 环绕切入点
-     * @date 2022-01-25 2:57 PM
+     * @date 2022/4/2 15:32
      */
     @Around("webLog()")
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
@@ -85,7 +93,8 @@ public class ControllerLogAspect {
         }
         // 执行耗时
         log.info("Time-Consuming: {} ms", System.currentTimeMillis() - startTime);
-        log.info("=========================================== End ===========================================");
+        log.info(
+                "=========================================== End ===========================================");
         return result;
     }
 }

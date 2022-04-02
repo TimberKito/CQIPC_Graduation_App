@@ -19,16 +19,18 @@ import java.util.List;
  * @since 2021-12-10
  */
 @Service
-public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Department> implements IDepartmentService {
+public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Department>
+        implements IDepartmentService {
 
     @Autowired
     private DepartmentMapper departmentMapper;
 
     /**
+     * 获取所有部门
+     *
      * @param
      * @return java.util.List<com.timberkito.server.pojo.Department>
      * @author Timber.Wang
-     * @describe:
      * @date 2022/3/30 11:34
      */
     @Override
@@ -38,10 +40,11 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
 
 
     /**
+     * 添加部门
+     *
      * @param dep
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe:
      * @date 2022/3/30 11:34
      */
     @Override
@@ -56,10 +59,11 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
 
 
     /**
+     * 删除部门
+     *
      * @param id
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe:
      * @date 2022/3/30 11:34
      */
     @Override

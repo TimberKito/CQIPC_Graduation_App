@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-12-10
  */
 @Service
-public class SalaryAdjustServiceImpl extends ServiceImpl<SalaryAdjustMapper, SalaryAdjust> implements ISalaryAdjustService {
+public class SalaryAdjustServiceImpl extends ServiceImpl<SalaryAdjustMapper, SalaryAdjust>
+        implements ISalaryAdjustService {
 
 }

@@ -16,11 +16,12 @@ public interface MenuRoleMapper extends BaseMapper<MenuRole> {
 
 
     /**
+     * 更新角色菜单列表
+     *
      * @param rid
      * @param mids
      * @return java.lang.Integer
      * @author Timber.Wang
-     * @describe:
      * @date 2022/3/30 11:36
      */
     Integer insertRecord(@Param("rid") Integer rid, @Param("mids") Integer[] mids);

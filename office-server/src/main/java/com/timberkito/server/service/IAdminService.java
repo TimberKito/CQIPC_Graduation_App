@@ -19,51 +19,56 @@ import java.util.List;
 public interface IAdminService extends IService<Admin> {
 
     /**
+     * 登录
+     *
      * @param username
      * @param password
      * @param code
      * @param request
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 登录
      * @date 2022/3/30 11:32
      */
     RespBean login(String username, String password, String code, HttpServletRequest request);
 
     /**
+     * 根据用户名获取用户
+     *
      * @param username
      * @return com.timberkito.server.pojo.Admin
      * @author Timber.Wang
-     * @describe: 根据用户名获取用户
      * @date 2021/12/11 12:34
      */
     Admin getAdminByUserName(String username);
 
     /**
+     * 根据用户ID查询角色权限
+     *
      * @param adminId
      * @return java.util.List<com.timberkito.server.pojo.Role>
      * @author Timber.Wang
-     * @describe: 根据用户ID查询角色权限
      * @date 2022-01-03 12:33 AM
      */
     List<Role> getRoles(Integer adminId);
 
 
     /**
+     * 获取所有操作员
+     *
      * @param keywords
      * @return java.util.List<com.timberkito.server.pojo.Admin>
      * @author Timber.Wang
-     * @describe: 获取所有操作员
      * @date 2022/3/30 11:32
      */
     List<Admin> getAllAdmins(String keywords);
 
     /**
+     * 更新操作员角色
+     *
      * @param adminId
      * @param rids
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 更新操作员角色
      * @date 2022/3/30 15:21
      */
     RespBean updateAdminRole(Integer adminId, Integer[] rids);

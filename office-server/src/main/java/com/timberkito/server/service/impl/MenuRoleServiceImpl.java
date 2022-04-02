@@ -19,18 +19,20 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2021-12-10
  */
 @Service
-public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole> implements IMenuRoleService {
+public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole>
+        implements IMenuRoleService {
 
     @Autowired
     private MenuRoleMapper menuRoleMapper;
 
 
     /**
+     * 修改用户权限组
+     *
      * @param rid
      * @param mids
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe:
      * @date 2022/3/30 11:34
      */
     @Override

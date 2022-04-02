@@ -19,15 +19,15 @@ import java.time.LocalDate;
 public interface EmployeeMapper extends BaseMapper<Employee> {
 
     /**
+     * 获取所有员工（分页）
+     *
      * @param page
      * @param employee
      * @param beginDateScope
      * @return com.baomidou.mybatisplus.core.metadata.IPage<com.timberkito.server.pojo.Employee>
      * @author Timber.Wang
-     * @describe: 获取所有员工（分页）
      * @date 2022/4/1 19:13
      */
-    IPage<Employee> getEmployeeByPage(Page<Employee> page,
-                                      @Param("employee") Employee employee,
+    IPage<Employee> getEmployeeByPage(Page<Employee> page, @Param("employee") Employee employee,
                                       @Param("beginDateScope") LocalDate[] beginDateScope);
 }

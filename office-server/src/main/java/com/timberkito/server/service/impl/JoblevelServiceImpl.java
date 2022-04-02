@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-12-10
  */
 @Service
-public class JoblevelServiceImpl extends ServiceImpl<JoblevelMapper, Joblevel> implements IJoblevelService {
+public class JoblevelServiceImpl extends ServiceImpl<JoblevelMapper, Joblevel>
+        implements IJoblevelService {
 
 }

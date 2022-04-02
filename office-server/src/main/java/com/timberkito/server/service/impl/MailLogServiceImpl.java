@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-12-10
  */
 @Service
-public class MailLogServiceImpl extends ServiceImpl<MailLogMapper, MailLog> implements IMailLogService {
+public class MailLogServiceImpl extends ServiceImpl<MailLogMapper, MailLog>
+        implements IMailLogService {
 
 }

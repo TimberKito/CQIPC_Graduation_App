@@ -57,17 +57,19 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     private AdminRoleMapper adminRoleMapper;
 
     /**
+     * 登陆后返回token
+     *
      * @param username
      * @param password
      * @param code
      * @param request
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 登陆后返回token
      * @date 2021/12/11 2:10
      */
     @Override
-    public RespBean login(String username, String password, String code, HttpServletRequest request) {
+    public RespBean login(String username, String password, String code,
+                          HttpServletRequest request) {
         // 从Session中获取验证码code
         String captcha = (String) request.getSession().getAttribute("captcha");
         // 如果Session中没有验证码
@@ -93,7 +95,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
         // 更新 security 登陆用户对象
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                new UsernamePasswordAuthenticationToken(userDetails, null,
+                                                        userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
         // 生成token
@@ -105,24 +108,24 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     }
 
     /**
+     * 根据用户名获取用户
+     *
      * @param username
      * @return com.timberkito.server.pojo.Admin
      * @author Timber.Wang
-     * @describe: 根据用户名获取用户
      * @date 2021/12/11 12:35
      */
     @Override
     public Admin getAdminByUserName(String username) {
-        return adminMapper.selectOne(new QueryWrapper<Admin>()
-                .eq("username", username)
-        );
+        return adminMapper.selectOne(new QueryWrapper<Admin>().eq("username", username));
     }
 
     /**
+     * 根据用户ID查询角色权限
+     *
      * @param adminId
      * @return java.util.List<com.timberkito.server.pojo.Role>
      * @author Timber.Wang
-     * @describe: 根据用户ID查询角色权限
      * @date 2022-01-03 12:34 AM
      */
     @Override
@@ -131,10 +134,11 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     }
 
     /**
+     * 获取所有操作员
+     *
      * @param keywords
      * @return java.util.List<com.timberkito.server.pojo.Admin>
      * @author Timber.Wang
-     * @describe: 获取所有操作员
      * @date 2022/3/29 16:52
      */
     @Override
@@ -144,11 +148,12 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     }
 
     /**
+     * 更新操作员角色
+     *
      * @param adminId
      * @param rids
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 更新操作员角色
      * @date 2022/3/30 15:22
      */
     @Override

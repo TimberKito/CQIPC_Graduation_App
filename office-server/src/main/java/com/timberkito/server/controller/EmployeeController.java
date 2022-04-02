@@ -37,7 +37,9 @@ public class EmployeeController {
 
     @ApiOperation(value = "获取所有员工(分页)")
     @GetMapping("/")
-    public RespPageBean getEmployee(@RequestParam(defaultValue = "1") Integer currentPage, @RequestParam(defaultValue = "10") Integer size, Employee employee, LocalDate[] beginDateScope) {
+    public RespPageBean getEmployee(@RequestParam(defaultValue = "1") Integer currentPage,
+                                    @RequestParam(defaultValue = "10") Integer size,
+                                    Employee employee, LocalDate[] beginDateScope) {
         return employeeService.getEmployeeByPage(currentPage, size, employee, beginDateScope);
     }
 

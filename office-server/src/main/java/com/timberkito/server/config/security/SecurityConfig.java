@@ -43,46 +43,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
+     * 自定义放行路径
+     *
      * @param web
      * @return void
      * @author Timber.Wang
-     * @describe: 自定义放行路径
      * @date 2021-12-18 8:57 PM
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(
                 // 绕过安全认证的路径
-                "/login",
-                "/logout",
-                "/css/**",
-                "/js/**",
-                "/index.html",
-                "favicon.ico",
-                "/captcha",
+                "/login", "/logout", "/css/**", "/js/**", "/index.html", "favicon.ico", "/captcha",
                 // 开发环境下放行路径
-                "/docx.html",
-                "/v2/api-docs",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/webjars/**");
+                "/docx.html", "/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
+                "/configuration/security", "/swagger-ui.html", "/webjars/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //使用JWT，不需要csrf
-        http.csrf()
-                .disable()
+        http.csrf().disable()
                 //基于token，不需要session
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 //所有请求都要求认证
-                .anyRequest()
-                .authenticated()
+                .anyRequest().authenticated()
                 //动态权限配置
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
@@ -95,13 +81,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 //禁用缓存
-                .headers()
-                .cacheControl();
+                .headers().cacheControl();
         //添加jwt，登陆授权拦截器
-        http.addFilterBefore(jwtAuthencationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthencationTokenFilter(),
+                             UsernamePasswordAuthenticationFilter.class);
         //添加自定义未授权和未登录结果返回
-        http.exceptionHandling()
-                .accessDeniedHandler(restfulAccessDeniedHandler)
+        http.exceptionHandling().accessDeniedHandler(restfulAccessDeniedHandler)
                 .authenticationEntryPoint(restAuthorizationEntryPoint);
     }
 

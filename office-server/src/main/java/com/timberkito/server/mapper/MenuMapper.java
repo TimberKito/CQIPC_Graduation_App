@@ -16,28 +16,31 @@ import java.util.List;
 public interface MenuMapper extends BaseMapper<Menu> {
 
     /**
+     * 根据用户id查询菜单列表
+     *
      * @param id
      * @return java.util.List<com.timberkito.server.pojo.Menu>
      * @author Timber.Wang
-     * @describe: 根据用户id查询菜单列表
      * @date 2021-12-22 8:30 PM
      */
     List<Menu> getMenusByAdminId(Integer id);
 
     /**
+     * 根据角色获取菜单列表
+     *
      * @param
      * @return java.util.List<com.timberkito.server.pojo.Menu>
      * @author Timber.Wang
-     * @describe: 根据角色获取菜单列表
      * @date 2022-01-02 7:37 PM
      */
     List<Menu> getMenusWithRole();
 
     /**
+     * 查询所有菜单
+     *
      * @param
      * @return java.util.List<com.timberkito.server.pojo.Menu>
      * @author Timber.Wang
-     * @describe: 查询所有菜单
      * @date 2022/3/28 10:44
      */
     List<Menu> getAllMenus();

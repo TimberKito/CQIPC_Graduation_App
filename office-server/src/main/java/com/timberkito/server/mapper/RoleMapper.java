@@ -16,10 +16,11 @@ import java.util.List;
 public interface RoleMapper extends BaseMapper<Role> {
 
     /**
+     * 根据用户ID查询角色权限
+     *
      * @param adminId
      * @return java.util.List<com.timberkito.server.pojo.Role>
      * @author Timber.Wang
-     * @describe: 根据用户ID查询角色权限
      * @date 2022-01-03 12:40 AM
      */
     List<Role> getRoles(Integer adminId);

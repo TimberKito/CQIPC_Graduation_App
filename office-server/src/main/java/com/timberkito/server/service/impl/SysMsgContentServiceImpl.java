@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-12-10
  */
 @Service
-public class SysMsgContentServiceImpl extends ServiceImpl<SysMsgContentMapper, SysMsgContent> implements ISysMsgContentService {
+public class SysMsgContentServiceImpl extends ServiceImpl<SysMsgContentMapper, SysMsgContent>
+        implements ISysMsgContentService {
 
 }

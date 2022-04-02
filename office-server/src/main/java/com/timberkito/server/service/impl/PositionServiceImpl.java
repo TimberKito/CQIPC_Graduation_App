@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-12-10
  */
 @Service
-public class PositionServiceImpl extends ServiceImpl<PositionMapper, Position> implements IPositionService {
+public class PositionServiceImpl extends ServiceImpl<PositionMapper, Position>
+        implements IPositionService {
 
 }

@@ -23,10 +23,11 @@ public class GlobalException {
     private static final Logger logger = LoggerFactory.getLogger(GlobalException.class);
 
     /**
+     * 数据库异常处理
+     *
      * @param e
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 数据库异常处理
      * @date 2022-01-25 1:22 PM
      */
     @ExceptionHandler(SQLException.class)
@@ -40,10 +41,11 @@ public class GlobalException {
     }
 
     /**
+     * 空指针异常处理
+     *
      * @param e
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 空指针异常处理
      * @date 2022-01-25 1:44 PM
      */
     @ExceptionHandler(NullPointerException.class)
@@ -53,10 +55,11 @@ public class GlobalException {
     }
 
     /**
+     * 权限认证异常
+     *
      * @param e
      * @return com.timberkito.server.pojo.RespBean
      * @author Timber.Wang
-     * @describe: 权限认证异常
      * @date 2022/3/26 19:46
      */
     @ExceptionHandler(ExpiredJwtException.class)

@@ -33,10 +33,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     private RedisTemplate redisTemplate;
 
     /**
+     * 根据用户id查询菜单列表
+     *
      * @param
      * @return java.util.List<com.timberkito.server.pojo.Menu>
      * @author Timber.Wang
-     * @describe: 根据用户id查询菜单列表
      * @date 2021-12-22 8:20 PM
      */
     @Override
@@ -67,10 +68,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     }
 
     /**
+     * 根据角色获取菜单列表
+     *
      * @param
      * @return java.util.List<com.timberkito.server.pojo.Menu>
      * @author Timber.Wang
-     * @describe: 根据角色获取菜单列表
      * @date 2022-01-02 7:34 PM
      */
     @Override
@@ -79,10 +81,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     }
 
     /**
+     * 查询所有菜单
+     *
      * @param
      * @return java.util.List<com.timberkito.server.pojo.Menu>
      * @author Timber.Wang
-     * @describe: 查询所有菜单
      * @date 2022/3/28 10:43
      */
     @Override

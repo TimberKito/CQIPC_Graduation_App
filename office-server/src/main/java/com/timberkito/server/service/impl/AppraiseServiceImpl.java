@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-12-10
  */
 @Service
-public class AppraiseServiceImpl extends ServiceImpl<AppraiseMapper, Appraise> implements IAppraiseService {
+public class AppraiseServiceImpl extends ServiceImpl<AppraiseMapper, Appraise>
+        implements IAppraiseService {
 
 }

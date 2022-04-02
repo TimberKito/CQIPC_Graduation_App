@@ -18,11 +18,12 @@ public interface AdminMapper extends BaseMapper<Admin> {
 
 
     /**
+     * 获取所有操作员
+     *
      * @param id
      * @param keywords
      * @return java.util.List<com.timberkito.server.pojo.Admin>
      * @author Timber.Wang
-     * @describe:
      * @date 2022/3/30 11:35
      */
     List<Admin> getAllAdmins(@Param("id") Integer id, @Param("keywords") String keywords);

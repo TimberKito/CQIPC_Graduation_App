@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-12-10
  */
 @Service
-public class AdminRoleServiceImpl extends ServiceImpl<AdminRoleMapper, AdminRole> implements IAdminRoleService {
+public class AdminRoleServiceImpl extends ServiceImpl<AdminRoleMapper, AdminRole>
+        implements IAdminRoleService {
 
 }
