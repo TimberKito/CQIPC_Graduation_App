@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MyBatisPlusConfig {
 
-
     /*	旧版本配置
 	@Bean
 	public PaginationInterceptor paginationInterceptor(){
