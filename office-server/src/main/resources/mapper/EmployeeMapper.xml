@@ -123,4 +123,34 @@
 
     </select>
 
+    <!--查询员工-->
+    <select id="getEmployee" resultMap="EmployeeInfo">
+        select e.*,
+        n.id as nid,
+        n.`name` as nname,
+        p.id as pid,
+        p.`name` as pname,
+        d.id as did,
+        d.`name` as dname,
+        j.id as jid,
+        j.`name` as jname,
+        pos.id as posid,
+        pos.`name` as posname
+        from office_db.t_employee e,
+        office_db.t_nation n,
+        office_db.t_politics_status p,
+        office_db.t_department d,
+        office_db.t_joblevel j,
+        office_db.t_position pos
+        where e.nationId = n.id
+        and e.politicId = p.id
+        and e.departmentId = d.id
+        and e.jobLevelId = j.id
+        and e.posId = pos.id
+        <if test="null != id">
+            and e.id = #{id}
+        </if>
+        order by e.id
+    </select>
+
 </mapper>

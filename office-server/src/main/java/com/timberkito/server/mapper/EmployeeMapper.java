@@ -7,6 +7,7 @@ import com.timberkito.server.pojo.Employee;
 import org.apache.ibatis.annotations.Param;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * <p>
@@ -30,4 +31,14 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      */
     IPage<Employee> getEmployeeByPage(Page<Employee> page, @Param("employee") Employee employee,
                                       @Param("beginDateScope") LocalDate[] beginDateScope);
+
+    /**
+     * 查询员工
+     *
+     * @param id
+     * @return java.util.List<com.timberkito.server.pojo.Employee>
+     * @author Timber.Wang
+     * @date 2022/4/4 20:54
+     */
+    List<Employee> getEmployee(Integer id);
 }

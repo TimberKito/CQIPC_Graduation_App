@@ -95,4 +95,17 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
         }
         return RespBean.error("添加员工失败！");
     }
+
+    /**
+     * 查询员工
+     *
+     * @param id
+     * @return java.util.List<com.timberkito.server.pojo.Employee>
+     * @author Timber.Wang
+     * @date 2022/4/4 20:53
+     */
+    @Override
+    public List<Employee> getEmployee(Integer id) {
+        return employeeMapper.getEmployee(id);
+    }
 }

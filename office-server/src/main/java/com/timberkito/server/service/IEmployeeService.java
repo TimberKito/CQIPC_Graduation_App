@@ -6,6 +6,7 @@ import com.timberkito.server.pojo.RespBean;
 import com.timberkito.server.pojo.RespPageBean;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * <p>
@@ -50,4 +51,15 @@ public interface IEmployeeService extends IService<Employee> {
      * @date 2022/4/2 13:08
      */
     RespBean addEmp(Employee employee);
+
+
+    /**
+     * 查询员工
+     *
+     * @param id
+     * @return java.util.List<com.timberkito.server.pojo.Employee>
+     * @author Timber.Wang
+     * @date 2022/4/4 20:52
+     */
+    List<Employee> getEmployee(Integer id);
 }
