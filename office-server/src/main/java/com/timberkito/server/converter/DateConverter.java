@@ -26,6 +26,9 @@ public class DateConverter implements Converter<String, LocalDate> {
      */
     @Override
     public LocalDate convert(String s) {
+        if (s.isEmpty()) {
+            return null;
+        }
         try {
             return LocalDate.parse(s, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         } catch (Exception e) {

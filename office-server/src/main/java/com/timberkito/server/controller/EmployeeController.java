@@ -52,7 +52,7 @@ public class EmployeeController {
     }
 
     @ApiOperation(value = "获取所有政治面貌")
-    @GetMapping("/politicsstatus")
+    @GetMapping("/politicsStatus")
     public List<PoliticsStatus> getAllPoliticsStatus() {
         return politicsStatusService.list();
     }
@@ -125,7 +125,7 @@ public class EmployeeController {
             // 使用输出流传输Excel文件
             response.setHeader("content-type", "application/octet-stream");
             // 防止中文乱码
-            response.setHeader("content-disposition", "attachment;filename"
+            response.setHeader("content-disposition", "attachment;filename="
                     + URLEncoder.encode("员工表.xls", "UTF-8"));
             outputStream = response.getOutputStream();
             workbook.write(outputStream);

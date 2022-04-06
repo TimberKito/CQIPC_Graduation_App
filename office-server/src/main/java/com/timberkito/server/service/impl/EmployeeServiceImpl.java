@@ -44,7 +44,6 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
      * @author Timber.Wang
      * @date 2022/4/1 19:08
      */
-    @SuppressWarnings("checkstyle:NonEmptyAtclauseDescription")
     @Override
     public RespPageBean getEmployeeByPage(Integer currentPage, Integer size, Employee employee,
                                           LocalDate[] beginDateScope) {

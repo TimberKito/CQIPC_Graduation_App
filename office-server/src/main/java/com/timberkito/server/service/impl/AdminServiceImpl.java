@@ -160,6 +160,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Transactional
     public RespBean updateAdminRole(Integer adminId, Integer[] rids) {
         adminRoleMapper.delete(new QueryWrapper<AdminRole>().eq("adminId", adminId));
+        if (null == rids) {
+            return RespBean.success("更新成功！");
+        }
         Integer result = adminRoleMapper.addAdminRole(adminId, rids);
         if (rids.length == result) {
             return RespBean.success("更新成功！");

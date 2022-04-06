@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
@@ -61,6 +62,7 @@ public class Admin implements Serializable, UserDetails {
     private String username;
 
     @ApiModelProperty(value = "密码")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @ApiModelProperty(value = "用户头像")
@@ -74,6 +76,7 @@ public class Admin implements Serializable, UserDetails {
     private List<Role> roles;
 
     @Override
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles
                 .stream()

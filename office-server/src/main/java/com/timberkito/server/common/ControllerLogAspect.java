@@ -16,7 +16,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 废弃的请求日志输出
+ * 优雅的请求日志输出
  *
  * @author Timber.Wang
  * @date 2022-01-25 2:32 PM
